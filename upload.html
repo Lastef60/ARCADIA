@@ -1,0 +1,16 @@
+<!--alimentation de la bdd mariadb ARCADIA table image, script pour permettre le telechargement des fichiers-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>telechargement Image</title>
+</head>
+<body>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <input type="text" name="image_name" placeholder="Nom de l'image" required>
+    <input type="submit" name="upload" value="Upload Image">
+  </form>
+</body>
+</html>
