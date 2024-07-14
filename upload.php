@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__.'/functions.php');
+require_once(__DIR__.'/variables.php'); //y compris variables pr recup données du form
 // Appel de la fonction pour se connecter à la BDD
 $pdo = connexionBDD();
 
@@ -17,7 +18,7 @@ if (isset($_POST['upload'])) {
       $stmt = $pdo->prepare("INSERT INTO image(image_data, image_name) VALUES (:image_date, :image_name)");
       $stmt->bindParam(':image_data', $image_data, PDO::PARAM_LOB); //lier les données de l'image
       $stmt->bindParam(':image_name', $image_name, PDO::PARAM_STR); //lier le nom de l'image
-      //$stmt->execute();executer la requete pas besoin de l'utiliser quand utilisation de bindParam
+      //$stmt->execute();executer la requete pas besoin de l'utiliser quand on utilise des bindParam
       echo "L'image a été enregsitrée avec succès dans la base de données.";
 
       //il faut indiquer le chemin du telechargement pour le retrouver dans le dossier

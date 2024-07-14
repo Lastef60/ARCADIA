@@ -20,8 +20,8 @@ function connexionBDD() {
 function ajouterUtilisateur($username, $password, $nom, $prenom, $role_id) {
   $pdo = connexionBDD();
   
-  // hashage mdp
-  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+  // hashage mdp avec SHA2
+  $hashed_password = hash('sha256', $password);
   
   // insertion des données (preparation + execution)
   $stmt = $pdo->prepare('INSERT INTO utilisateur (username, password, nom, prenom, role_id) VALUES (?, ?, ?, ?, ?)');
@@ -31,21 +31,10 @@ function ajouterUtilisateur($username, $password, $nom, $prenom, $role_id) {
   $pdo = null;
 }
 
-function modifierUtilisateur($username, $nom, $prenom, $role_id) {
-  $pdo = connexionBDD();
-  
-  // insertion des données (preparation + execution)
-  $stmt = $pdo->prepare('UPDATE utilisateur SET nom = ?, prenom = ?, role_id = ? WHERE username = ?');
-  $stmt->execute([$nom, $prenom, $role_id, $username]);
-  
-  // Fermer la connexion
-  $pdo = null;
-}
-
 function supprimerUtilisateur($username) {
   $pdo = connexionBDD();
   
-  // insertion des données (preparation + execution)
+  // suppression des données (preparation + execution)
   $stmt = $pdo->prepare('DELETE FROM utilisateur WHERE username = ?');
   $stmt->execute([$username]);
   

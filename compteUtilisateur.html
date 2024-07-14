@@ -10,7 +10,7 @@
 <h2>CREATION COMPTE UTILISATEUR</h2>
 <P>Afin de créer un compte utilisateur à un nouvel employé, merci de completer le formulaire suivant.</P>
 
-<form method="post" action="compteUtilisateur.php"><!--mettre dans action nom du fichier qui recupère l'info de connexion-->
+<form method="post" action="creationUtilisateur.php"><!--mettre dans action nom du fichier qui recupère l'info de connexion-->
     <label for="username">Nom d'utilisateur:</label>
     <input type="text" id="username" name="username" required>
 
@@ -27,18 +27,26 @@
     <fieldset>
       <legend>rôle</legend>
         <label for="veterinaire">
-        <input type="radio" id="veterinaire" name="role" required>
-          2-vétérinaire</label>
+        <input type="radio" id="veterinaire" name="role_id" value="2" required>
+        vétérinaire</label>
         <label for="employe">
-        <input type="radio" id="employe" name="role" required>
-        3-employé</label>
+        <input type="radio" id="employe" name="role_id" value="3" required>
+        employé</label>
     </fieldset>
 
     <input type="submit" value="enregistrer"></input>
 </form>
 
-<h2>MISE A JOUR COMPTE UTILISATEUR</h2>
 
-<H2>SUPPRESSION COMPTE UTILISATEUR</H2>
+
+<h2>SUPPRESSION COMPTE UTILISATEUR</h2>
+
+<form method="post" action="suppressionUtilisateur.php">
+  <label for="username">Nom d'utilisateur à supprimer:</label>
+    <input id="username" name="username" required>
+  
+    <input type="submit" value="Supprimer">
+</form>
+
 </body>
 </html>

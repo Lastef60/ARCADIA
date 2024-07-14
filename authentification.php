@@ -1,10 +1,8 @@
 <?php
-require_once(__DIR__.'/functions.php');
+require_once(__DIR__.'/functions.php'); //y compris fonction pr se connecter à la BDD
+require_once(__DIR__.'/variables.php'); //y compris variables pr recup données du form
 // se connecter à la base de donnée
 $pdo = connexionBDD();
-// recuperer les données du formulaire de login.php
-$username = $_POST['username'];
-$password = $_POST['password'];
 
 // hash du mdp avec la methode SHA2 car methode utilisée dans mariadb
 $hashedPassword = hash('sha256', $password);
