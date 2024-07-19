@@ -19,7 +19,7 @@
   </p>
 
   <p>Afin de gerer les services proposez pour le zoo, merci de vous rendre sur cette page :
-    <a class= js_admin_bddservice href="./compteService.html">page service</a>
+    <a class= js_admin_bddservice href="./compteServices.php">page service</a>
   </p>
 
   <p>Afin de gerer les habitats du zoo, merci de vous rendre sur cette page :

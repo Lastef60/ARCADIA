@@ -7,6 +7,7 @@
     const lienservice = document.getElementsByClassName('js_admin_bddservice')
     const lienhabitat = document.getElementsByClassName('js_admin_bddhabitat')
     const lienanimal = document.getElementsByClassName('js_admin_bddanimal')
+    const services = document.getElementsByClassName('js_services')
 
 
 
@@ -37,4 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //envoi vers compteService.html
     window.location.href = 'compteAnimal.html'
   })
+
+  services.addEventListener('click', () => {
+    //envoi vers service.php
+    window.location.href = 'service.php'
+  })
 })
+
+
