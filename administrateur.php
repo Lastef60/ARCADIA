@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Bienvenue José</h1>
-
+  <?php require_once(__DIR__.'/header.php');?>
   <p>Veuillez selectionner votre tâche</p>
 
   <p>Pour ajouter des nouvelles photos à la base de donnée Arcadia, merci de
@@ -19,7 +19,7 @@
   </p>
 
   <p>Afin de gerer les services proposez pour le zoo, merci de vous rendre sur cette page :
-    <a class= js_admin_bddservice href="./compteServices.php">page service</a>
+    <a class= js_admin_bddservice href="./compteService.php">page service</a>
   </p>
 
   <p>Afin de gerer les habitats du zoo, merci de vous rendre sur cette page :

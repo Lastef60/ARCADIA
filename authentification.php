@@ -1,4 +1,8 @@
 <?php
+// pour eviter que les erreurs s'affichent si pb de connexion
+error_reporting(0);
+
+
 require_once(__DIR__.'/functions.php'); //y compris fonction pr se connecter à la BDD
 require_once(__DIR__.'/variables.php'); //y compris variables pr recup données du form
 // se connecter à la base de donnée
@@ -17,9 +21,9 @@ $stmt = $pdo->prepare("
 $stmt->execute(['username'=>$username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Debugg car pb connexion
-if (!$user) {
-    echo "Nom d'utilisateur incorrect";
+// Debugg car pb connexion et eviter message erreur
+if (!$user || $hashedPassword !== $user['password']) {
+    echo "Nom d'utilisateur ou mot de passe incorrect";
     exit;
 }
 
