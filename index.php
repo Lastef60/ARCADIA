@@ -28,11 +28,11 @@ require_once(__DIR__.'/functions.php');
 <h2>Nos habitats et nos animaux</h2>
 <p>Plongez dans une aventure inoubliables à travers nos habitats – la savane, la jungle et le marais – et venez y decouvrir sa faune</p>
 
-  <img class="js_habitat css_img" src="./uploads/img/jungle_habitat.jpg" />
+  <img class="css_img js_habitat" src="./uploads/img/jungle_habitat.jpg" />
   <p>LA JUNGLE</p>
-  <img class="js_habitat css_img" src="./uploads/img/savane_habitat.jpg"/>
+  <img class="css_img js_habitat" src="./uploads/img/savane_habitat.jpg"/>
   <P>LA SAVANE</P>
-  <img class="js_habitat css_img" src="./uploads/img/marais_habitat.jpg"/>
+  <img class="css_img js_habitat" src="./uploads/img/marais_habitat.jpg"/>
   <P>LE MARAIS</P>
   <p id="js_commentaireHabitat">cliquez sur l'image pour découvrir les habitats et leurs animaux</p>
 

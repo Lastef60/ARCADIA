@@ -57,3 +57,30 @@ function connexionArcadiaMongoBDD() {
     die('Erreur : ' . $exception->getMessage());
   }
 }
+//fonction pour les animaux de habitats.php : recup des données à afficher des animaux
+function fichierAnimal($pdo) {
+  // Préparation de la requête
+  $queryAnimals = $pdo->prepare(
+      "SELECT
+          a.prenom,
+          a.genre,
+          a.age,
+          a.etat AS historique,
+          r.label AS race,
+          rv.etat_animal AS rapport_veterinaire
+      FROM animal a
+      JOIN rapport_veterinaire rv ON a.animal_id = rv.animal_id
+      JOIN race r ON a.race_id = r.race_id"
+  );
+
+  // Exécution de la requête
+  if (!$queryAnimals->execute()) {
+      // Affichage des erreurs SQL
+      $errorInfo = $queryAnimals->errorInfo();
+      echo "SQL Error: " . htmlspecialchars($errorInfo[2]);
+      exit;
+  }
+
+  // Récupération des résultats
+  return $queryAnimals->fetchAll(PDO::FETCH_ASSOC);
+}
