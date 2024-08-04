@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 // Variables et constantes
 const lienimg = document.getElementsByClassName('js_admin_bddimg')
 const lienuser = document.getElementsByClassName('js_admin_bdduser')
@@ -16,6 +18,7 @@ const imgkaa = document.getElementById('js_jungle_kaa')
 const imgkerchak = document.getElementById('js_jungle_kerchak')
 const imgtictac = document.getElementById('js_jungle_tictac')
 const imgtigrou = document.getElementById('js_jungle_tigrou')
+const resetForm = document.getElementById('js_reinitialisation')
 
 
 if (index_P_Habitat) {
@@ -123,22 +126,29 @@ function toggleAnimalDescription(animal) {
 }
 
 // Initialiser les affichages à 'none'
-document.querySelectorAll('.js_habitat_animals .js_animal').forEach(animal => animal.style.display = 'none');
-document.querySelectorAll('.js_animal_description').forEach(description => description.style.display = 'none');
+document.querySelectorAll('.js_habitat_animals .js_animal').forEach(animal => animal.style.display = 'none')
+document.querySelectorAll('.js_animal_description').forEach(description => description.style.display = 'none')
 
 // Ajouter des gestionnaires d'événements pour les images des habitats
 document.querySelectorAll('.js_habitat_img').forEach(img => {
   img.addEventListener('click', () => {
-    const habitat = img.dataset.habitat;
-    toggleAnimalsDisplay(habitat);
-  });
-});
+    const habitat = img.dataset.habitat
+    toggleAnimalsDisplay(habitat)
+  })
+})
 
 // Ajouter des gestionnaires d'événements pour les images des animaux
 document.querySelectorAll('.js_animal').forEach(img => {
   img.addEventListener('click', () => {
-    const animal = img.dataset.animal;
-    toggleAnimalDescription(animal);
-  });
-});
+    const animal = img.dataset.animal
+    toggleAnimalDescription(animal)
+  })
+})
+
+
+resetForm.addEventListener ('click', () => {
+  location.reload()
+})
+
+})
 

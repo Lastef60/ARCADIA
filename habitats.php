@@ -9,21 +9,32 @@ $queryHabitats->execute();
 $habitats = $queryHabitats->fetchAll(PDO::FETCH_ASSOC);
 
 // Requête pour tous les animaux avec leur habitat, race et rapport vétérinaire
-$queryAnimals = $pdo->prepare(
-    "SELECT
-        a.animal_id,
-        a.prenom,
-        a.genre,
-        a.age,
-        a.etat AS historique,
-        r.label AS race,
-        rv.etat_animal AS rapport_veterinaire,
-        a.habitat_id
-    FROM animal a
-    JOIN race r ON a.race_id = r.race_id
-    JOIN rapport_veterinaire rv ON a.animal_id = rv.animal_id
-    WHERE a.habitat_id IS NOT NULL"
-);
+//apportt modif pour que le dernier rapport veto soit recup :  WHERE rv.date = (
+        //SELECT MAX(rv2.date)
+        //FROM rapport_veterinaire rv2
+        //WHERE rv2.animal_id = a.animal_id
+    
+        $queryAnimals = $pdo->prepare(
+            "SELECT
+                a.animal_id,
+                a.prenom,
+                a.genre,
+                a.age,
+                a.etat AS historique,
+                r.label AS race,
+                rv.etat_animal AS rapport_veterinaire,
+                rv.date AS rapport_date,
+                a.habitat_id
+            FROM animal a
+            JOIN race r ON a.race_id = r.race_id
+            JOIN rapport_veterinaire rv ON a.animal_id = rv.animal_id
+            WHERE rv.date = (
+                SELECT MAX(rv2.date)
+                FROM rapport_veterinaire rv2
+                WHERE rv2.animal_id = a.animal_id
+            )
+            AND a.habitat_id IS NOT NULL"
+        );
 $queryAnimals->execute();
 $animals = $queryAnimals->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,7 +44,7 @@ foreach ($animals as $animal) {
     $animalsByHabitat[$animal['habitat_id']][] = $animal;
 }
 
-// Mapping des descriptions d'habitat aux noms d'habitat
+// indication id_habitat = nom_habitat
 $habitatMapping = [
     4 => 'savane',
     5 => 'jungle',
@@ -79,6 +90,7 @@ require_once(__DIR__.'/header.php');
                                 <p><?= htmlspecialchars(ucfirst(str_replace('_', ' ', $key))) ?>: <?= htmlspecialchars($value) ?></p>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                    
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>

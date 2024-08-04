@@ -41,22 +41,13 @@ function supprimerUtilisateur($username) {
   // Fermer la connexion
   $pdo = null;
 }
+//connexion bdd nosql mongodb
+//function connexionArcadiaMongoBDD() {
+    // $client = new MongoDB\Client("mongodb://localhost:27017");
+    //return $client->arcadia_mongodb;
+//}
 
-function connexionArcadiaMongoBDD() {
-  // try-catch pour attraper les erreurs de connexion
-  try {
-    $pdo = new PDO(
-      sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', DB_MONGO_HOST, DB_MONGO_PORT, DB_MONGO_NAME),
-      DB_MONGO_USER,
-      DB_MONGO_PASSWORD
-    );
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // définir le mode d'erreur en mode Exception
-    return $pdo;//retourne l'objet PDO sinon pb dans uplaod.php
-    //echo('connexion réussie');
-  } catch (Exception $exception) {
-    die('Erreur : ' . $exception->getMessage());
-  }
-}
+
 //fonction pour les animaux de habitats.php : recup des données à afficher des animaux
 function fichierAnimal($pdo) {
   // Préparation de la requête
@@ -84,3 +75,51 @@ function fichierAnimal($pdo) {
   // Récupération des résultats
   return $queryAnimals->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function ajouterRapportVeto($date, $detail, $etat_animal, $nourriture, $grammage, $prenom_animal) {
+  $pdo = connexionBDD();
+  try {
+    // ID de l'animal à partir du prénom car veto ne connait pas l'ID
+    $stmt = $pdo->prepare('SELECT animal_id FROM animal WHERE prenom = ?');
+    $stmt->execute([$prenom_animal]);
+    $animal = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$animal) {
+      throw new Exception('Animal non trouvé avec le prénom donné.');
+    }
+
+    $animal_id = $animal['animal_id'];
+
+    // Requête pour insérer le rapport vétérinaire
+    $stmt = $pdo->prepare('INSERT INTO rapport_veterinaire (date, detail, etat_animal, nourriture, grammage, animal_id) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$date, $detail, $etat_animal, $nourriture, $grammage, $animal_id]);
+  } catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+  } finally {
+    // Fermer la connexion
+    $pdo = null;
+  }
+}
+
+function modifierHabitat ($nom, $description, $commentaire_habitat, $nom_habitat) {
+  $pdo = connexionBDD();
+  try {
+    //id habitat pour reconnaitre avec le nom de l'habitat
+    $stmt = $pdo->prepare('SELECT habitat_id FROM habitat WHERE nom = ?');
+    $stmt->execute([$nom_habitat]);
+    $habitat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$habitat) {
+      throw new Exception('habitat non trouvé avec le nom donné');
+    }
+    $habitat_id = $habitat['habitat_id'];
+    //requete pour modifier les données de l'habitat
+    $stmt = $pdo->prepare('UPDATE habitat SET nom = ?, description = ?, commentaire_habitat = ? WHERE habitat_id = ?');
+    $stmt->execute([$nom, $description, $commentaire_habitat, $habitat_id]);
+  }catch (Exception $e) {
+    die('Erreur : '.$e->getMessage());
+  } finally{
+    $pdo = null;
+  }
+}
+ 
