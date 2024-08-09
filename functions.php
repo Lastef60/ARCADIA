@@ -122,4 +122,15 @@ function modifierHabitat ($nom, $description, $commentaire_habitat, $nom_habitat
     $pdo = null;
   }
 }
- 
+
+function recupAvis () {
+  $pdo = connexionBDD();
+  //requete recup avis dans bdd
+$queryAvis = $pdo->prepare("SELECT pseudo, commentaire, date_publication FROM avis ORDER BY date_publication DESC LIMIT 5");
+// ORDER BY date DESC LIMIT 5 = selection des 5 derniers avis
+$queryAvis ->execute();
+$avisVisiteurs = $queryAvis->fetchAll(PDO::FETCH_ASSOC);
+// Fermer la connexion
+$pdo = null;
+return $avisVisiteurs;
+}

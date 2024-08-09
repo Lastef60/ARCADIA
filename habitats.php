@@ -9,7 +9,7 @@ $queryHabitats->execute();
 $habitats = $queryHabitats->fetchAll(PDO::FETCH_ASSOC);
 
 // Requête pour tous les animaux avec leur habitat, race et rapport vétérinaire
-//apportt modif pour que le dernier rapport veto soit recup :  WHERE rv.date = (
+//apport modif pour que le dernier rapport veto soit recup :  WHERE rv.date = (
         //SELECT MAX(rv2.date)
         //FROM rapport_veterinaire rv2
         //WHERE rv2.animal_id = a.animal_id

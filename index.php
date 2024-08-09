@@ -2,6 +2,11 @@
 
 require_once(__DIR__.'/functions.php');
 
+$pdo = connexionBDD();
+$avisVisiteurs = recupAvis();
+//pr n'afficher que les 5 derniers avis :
+$avisVisiteurs = array_slice($avisVisiteurs, -5);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -44,6 +49,22 @@ require_once(__DIR__.'/functions.php');
 <img class="js_services css_img" src="./uploads/img/service_resto2.jpg" />
 <img class="js_services css_img" src="./uploads/img/service_resto3.jpg" />
 <img class="js_services css_img" src="./uploads/img/service_visiteGuidee.jpg" />
+
+<h2>Ils sont venus nous voir ...</h2>
+<?php
+  // affichage avis
+  if ($avisVisiteurs) {
+      foreach ($avisVisiteurs as $avisVisiteur) {
+          echo '<div class="avis">';
+          echo '<p>' . htmlspecialchars($avisVisiteur['pseudo']) . '</p>';
+          echo '<p>' . htmlspecialchars($avisVisiteur['commentaire']) . '</p>';
+          echo '<p><em>' . htmlspecialchars($avisVisiteur['date_publication']) . '</em></p>';
+          echo '</div>';
+      }
+  } else {
+      echo '<p>Aucun avis pour le moment.</p>';
+  }
+?>
 
   <?php require_once(__DIR__.'/footer.php');?>
   <script src="script.js"></script>
