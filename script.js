@@ -132,11 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  resetForm.addEventListener ('click', () => {
-    location.reload()
-  })
-
-
   // script pour contact.php
 
 })
