@@ -1,3 +1,27 @@
+/*importation des polices d'ecitures*/
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+
+/*css pour mobile*/
+body {
+  background-color: black;
+  color: white;
+}
+
+h1{
+  color: #7aba78;
+  font-family: 'Poppins';
+}
+
+h2, h3 {
+  font-family: 'Merriweather';
+}
+
+p{
+  font-family: 'Roboto';
+}
+
 .css_img {
   width : 200px;
   height: auto;
@@ -6,4 +30,58 @@
 .css_img_habitats {
   width: 300px;
   height: 250px;
+}
+/*media query pour grand ecran*/
+@media only screen and (min-width:664px){
+  body {
+    background-color: black;
+    color: white;
+  }
+  
+  h1{
+    color: #7aba78;
+    justify-content: center;
+  }
+
+  h2{
+    color: #A1CEA0;
+  }
+
+  h3 {
+    color:#BCDCBB ;
+  }
+
+
+/*nav*/
+.css_header_div{
+  display : flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 20px;
+ 
+}
+
+.css_header_div_nav_a {
+  color: #D7EAD6;
+  text-decoration: none;
+  padding : 20px;
+  font-weight: bold; /*a verif*/
+}
+
+/*index.php*/
+.css_index_messageOver {
+  color : rgb(244, 208, 116) ;
+  font-weight: 300;
+}
+.css_index_habitatTitre,
+.css_index_habitatImg {
+  display : flex;
+  justify-content: space-around;
+  align-items: center;
+  
+
+}
+.css_index_h3 {
+   padding : 10px
+}
 }

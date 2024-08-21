@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>connexion</title>
+  <link rel="stylesheet" href="styles.css">
  </head>
  <body>
    <!-- inclusion de l'entête du site -->
@@ -21,5 +22,6 @@
 </form>
    <!-- inclusion du footer du site -->
     <?php require_once(__DIR__.'/footer.php'); ?>
+    <script src="script.js"></script>
  </body>
- </html>
+  </html>

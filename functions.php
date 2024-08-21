@@ -42,10 +42,15 @@ function supprimerUtilisateur($username) {
   $pdo = null;
 }
 //connexion bdd nosql mongodb
-//function connexionArcadiaMongoBDD() {
-    // $client = new MongoDB\Client("mongodb://localhost:27017");
-    //return $client->arcadia_mongodb;
-//}
+function connexionArcadiaMongoBDD() {
+    $client = new MongoDB\Client("mongodb://localhost:27017");
+    //Sélectionner la base de données
+    $database = $client->aracadia_mongodb;
+    //choisir la collection (= table en SQL)
+    $collection = $database->animal;
+    // Récup tous les documents dans la collection
+    $animals = $collection->find();
+}
 
 
 //fonction pour les animaux de habitats.php : recup des données à afficher des animaux

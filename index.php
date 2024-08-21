@@ -30,16 +30,22 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
   dédié à éduquer et à sensibiliser les visiteurs de tous âges à l'importance de la protection de notre planète.
   </p>
 
-<h2>Nos habitats et nos animaux</h2>
-<p>Plongez dans une aventure inoubliables à travers nos habitats – la savane, la jungle et le marais – et venez y decouvrir sa faune</p>
-
-  <img class="css_img js_habitat" src="./uploads/img/jungle_habitat.jpg" />
-  <p>LA JUNGLE</p>
-  <img class="css_img js_habitat" src="./uploads/img/savane_habitat.jpg"/>
-  <P>LA SAVANE</P>
-  <img class="css_img js_habitat" src="./uploads/img/marais_habitat.jpg"/>
-  <P>LE MARAIS</P>
-  <p id="js_commentaireHabitat">cliquez sur l'image pour découvrir les habitats et leurs animaux</p>
+  <h2>Nos habitats et nos animaux</h2>
+  <p>Plongez dans une aventure inoubliables à travers nos habitats – la jungle, la savane et le marais – et venez y decouvrir sa faune</p>
+  <div class="css_index_habitatTitre">
+    <h3 class="css_index_h3">LA JUNGLE</h3>
+    <h3 class="css_index_h3">LA SAVANE</h3>
+    <h3 class="css_index_h3">LE MARAIS</h3>
+  </div>
+  <div class="css_index_habitatImg">
+    
+    <img class="css_img js_habitat" src="./uploads/img/jungle_habitat.jpg" />
+   
+    <img class="css_img js_habitat" src="./uploads/img/savane_habitat.jpg"/>
+  
+    <img class="css_img js_habitat" src="./uploads/img/marais_habitat.jpg"/>
+  </div>
+    <p class="css_index_messageOver" id="js_commentaireHabitat">cliquez sur l'image pour découvrir les habitats et leurs animaux</p>
 
 
 <h2>Préparez votre visite pour la rendre inoubliable ...</h2>

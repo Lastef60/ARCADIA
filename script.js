@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleAnimalDescription(animal)
     })
   })
-
+  
   // script pour contact.php
 
 })

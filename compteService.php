@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//verifie si methode utilisée = post
 <head>
     <meta charset="UTF-8">
     <title>Gestion des services du Zoo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -93,5 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//verifie si methode utilisée = post
         </div>
         <button type="submit" name="create_service">Créer le service</button>
     </form>
+    <script src="script.js"></script>
 </body>
 </html>
