@@ -24,25 +24,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Veterinaire</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<?php require_once(__DIR__.'/header.php');?>
+  <?php require_once(__DIR__ . '/header.php'); ?>
 
   <h1>ENREGISTREMENT DES RAPPORTS</h1>
 
   <p>Merci de bien vouloir renseigner le formulaire suivant après chaque consultation auprès d'un animal.</p>
   <p> Attention , la date du rapport doit être la date de visite de l'animal, même si le rapport n'est pas fait le même jour (j +1 maximum)</p>
-  
+
   <?php if ($success): ?>
-        <p >Rapport vétérinaire ajouté avec succès.</p>
-    <?php endif; ?>
-  
-  <form id="js_veterinaire_form" method="post" action="veterinaire.php">
+    <p>Rapport vétérinaire ajouté avec succès.</p>
+  <?php endif; ?>
+
+  <form class="css_form" id="js_veterinaire_form" method="post" action="veterinaire.php">
     <label for="nomanimal">Prénom de l'animal :</label>
     <input type="text" id="nomanimal" name="nomanimal" required>
 
@@ -64,12 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="submit" value="Enregistrer">
 
     <input id="js_reinitialisation" type="button" value="Réinitialiser le formulaire">
-</form>
+  </form>
 
-<p>Afin de gerer les habitats du zoo, merci de vous rendre sur cette page :
-<a class= js_admin_bddhabitat href="./compteHabitat.php">page habitat</a>
+  <p>Afin de gerer les habitats du zoo, merci de vous rendre sur cette page :
+    <a class=js_admin_bddhabitat href="./compteHabitat.php">page habitat</a>
 
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

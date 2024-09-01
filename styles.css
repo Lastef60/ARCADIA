@@ -3,85 +3,684 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
 
 
-/*css pour mobile*/
-body {
-  background-color: black;
-  color: white;
-}
-
-h1{
-  color: #7aba78;
-  font-family: 'Poppins';
-}
-
-h2, h3 {
-  font-family: 'Merriweather';
-}
-
-p{
-  font-family: 'Roboto';
-}
-
-.css_img {
-  width : 200px;
-  height: auto;
-}
-
-.css_img_habitats {
-  width: 300px;
-  height: 250px;
-}
-/*media query pour grand ecran*/
-@media only screen and (min-width:664px){
+/*css pour mobile
+  /* Général */
   body {
     background-color: black;
-    color: white;
-  }
-  
-  h1{
-    color: #7aba78;
-    justify-content: center;
+    padding: 10px;
   }
 
-  h2{
-    color: #A1CEA0;
+  h1 {
+    color: #7aba78;
+    font-family: 'Poppins';
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+  }
+
+  h2 {
+    font-family: 'Merriweather';
+    text-align: center;
+    color: #85c17e;
+    margin: 30px 0;
+    padding: 15px;
   }
 
   h3 {
-    color:#BCDCBB ;
+    font-family: 'Merriweather';
+    color: #a1cea0;
+    margin: 20px 0;
+    padding: 10px;
+  }
+
+  p {
+    font-family: 'Roboto';
+    color: #F0E9DF;
+    text-align: justify;
+    padding: 10px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  a {
+    color: #0a6847;
+    text-decoration: underline;
+  }
+
+  /* Header */
+  .css_header_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .css_header_div_nav_a {
+    color: #0a6847;
+    text-decoration: none;
+    padding: 15px;
+    font-weight: bold;
+  }
+
+  /* Index */
+  .css_indexIntro {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .css_img_indexIntro {
+    float: none;
+    margin: 10px auto;
+    width: 100px;
+    height: auto;
+    display: block;
+    border: 2px solid #ddd;
+  }
+
+  .css_index_img_habitat {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+  }
+
+  .css_galerie {
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .css_galerie img {
+    max-width: 100%;
+    height: auto;
+    flex: 1 1 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    clip-path: none;
+    margin-bottom: 10px;
+  }
+
+  .css_index_messageOver {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+
+  /* Carrousel */
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .carrousel {
+    overflow: hidden;
+  }
+
+  .diapo {
+    padding: 15px;
+    border-bottom: none;
+    border-top: none;
+  }
+
+  .diapo>p {
+    text-align: center;
+  }
+
+  /* Habitats */
+  .css_habitat_container {
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .css_img_habitats {
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+  }
+
+  .css_habitat_animal {
+    flex-direction: column;
+    margin: 10px 0;
+  }
+
+  .css_habitat_imgAnimal {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  /* Services */
+  .css_services_img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .css_service {
+    margin: 10px 0;
+  }
+
+  /* Tableau */
+  .css_table {
+    font-size: 0.9em;
+  }
+
+  .css_table th, .css_table td {
+    padding: 5px;
+  }
+
+  /* Formulaires */
+  .css_form {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .css_form input[type="text"], .css_form input[type="password"],
+  .css_form textarea {
+    padding: 8px;
+  }
+
+  .css_form button, .css_form input[type="submit"] {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  /* Login */
+  .css_login_content {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .css_login_content h2 {
+    font-size: 1.5em;
+  }
+
+  /* Footer */
+  .css_footer_p {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+
+/*media query pour grand ecran*/
+@media only screen and (min-width:664px) {
+  body {
+    background-color: black;
+  }
+
+  h1 {
+    color: #7aba78;
+    font-family: 'Poppins';
+    text-align: center;
+    margin: 20 0 20 20px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-family: 'Merriweather';
+    text-align: center;
+    color: #85c17e;
+    margin: 45px;
+    padding: 20px;
+  }
+
+  h3 {
+    font-family: 'Merriweather';
+    color: #a1cea0;
+    margin: 10px;
+    padding: 20px;
+  }
+
+  p {
+    font-family: 'Roboto';
+    color: #F0E9DF;
+    text-align: justify;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+    max-width: 1000px;
+    /* Limite la largeur pour une meilleure lisibilité */
+    padding: 15px;
+    line-height: 1.6;
+    /* Hauteur de ligne pour améliorer la lisibilité */
+  }
+
+  a {
+    color: #0a6847;
+    text-decoration: none;
+  }
+
+  /*nav*/
+  .css_header_div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 20px;
+
+  }
+
+  .css_header_div_nav_a {
+    color: #0a6847;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: bold;
+    /*a verif*/
   }
 
 
-/*nav*/
-.css_header_div{
-  display : flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-right: 20px;
+  /*index.php*/
+  .css_indexIntro {
+    max-width: 1000px;
+    /* Ajuste cette valeur selon la largeur de ton conteneur */
+    margin: 0 auto;
+    /* Centre le conteneur */
+  }
+
+  .css_img_indexIntro {
+    float: right;
+    /* Place l'image à droite */
+    margin: 0 0 10px 10px;
+    /* marges autour de l'image */
+    width: 150px;
+    height: auto;
+    /* Garde les proportions de l'image */
+    display: block;
+    /* Assure que l'image se comporte comme un bloc */
+    border: 2px solid #ddd;
+    /*bordure légère autour de l'image */
+
+    -webkit-transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out
+  }
+
+  .css_img_indexIntro:hover {
+    -webkit-transform: rotate(10deg) scale(1.25);
+    transform: rotate(10deg) scale(1.25);
+  }
+
+
+  .css_index_img_habitat {
+    width: 450px;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  /*animation sur photo habitat page index*/
+  .flash:hover {
+    opacity: 1;
+    -webkit-animation: flash 1.5s;
+    animation: flash 1.5s;
+  }
+
+  @-webkit-keyframes flash {
+    0% {
+      opacity: .4;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes flash {
+    0% {
+      opacity: .4;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  .css_galerie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-evenly;
+  }
+
+  .css_galerie img {
+    max-width: 150px;
+    height: auto;
+    flex: 1 1 calc(33% - 20px);
+    object-fit: cover;
+    transition: filter 0.3s ease;
+    border: 5px solid transparent;
+    transition: border-color 0.3s ease;
+    border-radius: 25px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  .css_galerie img:hover {
+    filter: brightness(1.2) contrast(1.2);
+    border-color: #F0E9DF;
+  }
+
+  .css_index_messageOver {
+    color: #ac86b2;
+    font-weight: 300;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .css_index_habitatTitre,
+  .css_index_habitat {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .css_index_h3 {
+    padding: 10px
+  }
+
+  .css_p_avis_lien>a {
+    color: #0a6847;
+    text-decoration: none;
+  }
+
+  /*carrousel*/
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .carrousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carrousel_diapo {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .diapo {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .diapo>p {
+    text-align: center;
+  }
+
+  /*habitats.php */
+  .css_habitat_container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .css_img_habitats {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+
+  .css_habitat_description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  .css_habitat_container:hover .css_img_habitats {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+  }
+
+  .css_habitat_container:hover .css_habitat_description {
+    transform: translateY(0);
+  }
+
+  .css_habitat_animal {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    position: relative; /* Pour que les enfants absolus soient positionnés relativement à ce conteneur */
+  }
+
+  .css_habitat_imgAnimal {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* Image ronde par défaut */
+    -webkit-filter: grayscale(0) blur(0px);
+    filter: grayscale(0) blur(0px);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    object-fit: cover;
+    /* Maintient le rapport d'aspect */
+    object-position: center;
+    /* Centre l'image */
+    padding: 3%;
+    position: relative; /* Pour que la description soit placée par rapport à l'image */
+    cursor: pointer; /* Ajouter un curseur pointer pour indiquer que l'image est cliquable */
+    z-index: 1; /* Assure que l'image est au-dessus de la description */
+  }
+
+  .css_habitat_imgAnimal:hover {
+    width: 200px;
+    /* Image devient plus grande */
+    height: 200px;
+    /* Hauteur égale à la largeur pour garder un carré */
+    border-radius: 0%;
+    /* Image devient carrée */
+    -webkit-transform: rotate(360deg);
+    /* Rotation de l'image */
+    transform: rotate(360deg);
+  }
+
+  .css_animal_description {
+    display: none; /* Masquer la description par défaut */
+  width: 150px; /* Largeur égale à celle de l'image pour un alignement propre */
+    /* Occupe toute la largeur disponible */
+    text-align: center; /* Centrer le texte */
+    margin-top: 10px; /* Espacement entre l'image et la description */
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative; /* Pas d'effet de superposition avec positionnement relatif */
+    z-index: 0; /* Assure que la description est derrière l'image */
+  }
+
  
+  /*services*/
+
+/* Style général pour les images de service */
+.css_services_img {
+  width: 100%; /* Assure que l'image prend toute la largeur du conteneur */
+  height: auto; /* Maintient les proportions de l'image */
+  max-width: 400px; /* Définit une largeur maximale pour uniformiser les images */
+  object-fit: cover; /* Assure que l'image couvre l'espace sans déformation */
+  border-radius: 10px; /* Optionnel: ajoute des coins arrondis aux images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel: ajoute une ombre autour des images */
+  -webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
 
-.css_header_div_nav_a {
-  color: #D7EAD6;
-  text-decoration: none;
-  padding : 20px;
-  font-weight: bold; /*a verif*/
+.css_services_img:hover {
+  -webkit-filter: grayscale(0);
+	filter: grayscale(0);
 }
 
-/*index.php*/
-.css_index_messageOver {
-  color : rgb(244, 208, 116) ;
-  font-weight: 300;
+.css_service {
+  margin: 20px; /* Ajoute une marge autour de chaque service pour les espacer */
+  text-align: center; /* Centre le texte sous les images */
 }
-.css_index_habitatTitre,
-.css_index_habitatImg {
-  display : flex;
-  justify-content: space-around;
-  align-items: center;
+
+
+  /*tableau*/
+  .css_table{
+    color: #F0E9DF;
+    border-collapse: collapse; /* les bordures des cellules fusionnent */
+    width: 100%; /*le tableau prend toute la largeur disponible */
+  }
+
+  .css_table th, .css_table td {
+    border: solid 2px #F0E9DF; /* Ajoute une bordure aux cellules */
+    padding: 10px; /* Ajoute du padding pour espacer le texte des bordures */
+  }
+  .css_table th {
+    background-color: #0a6847; /* Optionnel: Ajoute une couleur de fond pour l'en-tête */
+    color: #F0E9DF; /* Assure que le texte de l'en-tête reste visible */
+  }
+
+  /* Style de survol pour les lignes du tableau */
+.css_table tbody tr:hover {
+  background-color: #0a6847; /* Couleur de fond au survol */
+}
+
+.css_table tbody tr:hover td {
+  color: #F0E9DF; /* Couleur du texte au survol */
+}
+
+
+/*contact*/
+.css_contact_p{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*css des formulaires*/
+.css_form {
+  color: #F0E9DF;
+  margin: 40px auto; /* Centre le formulaire sur la page */
+  max-width: 600px; /* Limite la largeur du formulaire */
+  padding: 20px; /* Ajoute un padding uniforme autour du formulaire */
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Inclut le padding dans la taille totale du conteneur */
+}
+
+.css_form input[type="text"], .css_form input[type="password"],
+.css_form textarea {
+  width: 100%; /* Prend toute la largeur disponible dans le conteneur */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #7aba78;
+  border-radius: 5px;
+  background-color: #444;
+  color: #F0E9DF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box; /* Assure que le padding est inclus dans la largeur totale */
+}
+
+
+.css_form label {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 600;
+  color: #85c17e;
+}
+
+
+.css_form textarea {
+  height: 150px; /* Ajustez cette valeur selon vos besoins */
+  resize: vertical; /* Permet de redimensionner uniquement la hauteur */
+}
+
+.css_form button, .css_form input[type="submit"] {
+  background-color: #0a6847;
+  color: #F0E9DF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.css_form button, .css_form input[type="submit"]:hover {
+  background-color: #85c17e;
+}
+
+
+/*login.php*/
+.css_login {
+  margin-bottom: 120px;
   
+}
+.css_login_content {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px; /* Ajoute un espacement au-dessus pour éviter la coupure des lettres */
+}
 
+.css_login_content h2 {
+  font-family: 'Merriweather';
+  font-size: 2em; /* Taille ajustée pour tenir sur une seule ligne */
+  line-height: 1.2em; /* Augmente l'espace vertical */
+  margin: 20px 0; /* Espacement autour du texte */
+  white-space: nowrap; /* Empêche le texte de se découper */
+  color: #7aba78;
+  position: absolute; /* Positionne les deux <h2> en superposition */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre les <h2> */
 }
-.css_index_h3 {
-   padding : 10px
+
+.css_login_content h2:first-child {
+  color: transparent; /* Cache le texte tout en gardant le contour visible */
+  -webkit-text-stroke: 1px #7aba78; /* Ajoute un contour aux lettres */
+  z-index: 1; /* Place ce texte en dessous */
 }
+
+.css_login_content h2:nth-child(2) {
+  color: #7aba78; /* Couleur du texte animé */
+  animation: animate 4s ease-in-out infinite;
+  z-index: 2; /* Place ce texte au-dessus */
+}
+
+@keyframes animate {
+  0%, 100% {
+    clip-path: polygon(
+      0% 45%, 16% 44%, 33% 50%, 54% 60%, 
+      70% 61%, 84% 59%, 100% 52%, 100% 100%, 
+      0% 100%
+    );
+  }
+  50% {
+    clip-path: polygon(
+      0% 60%, 15% 65%, 34% 66%, 51% 62%, 
+      67% 50%, 84% 45%, 100% 46%, 100% 100%, 
+      0% 100%
+    );
+  }
+}
+/*administrateur.php*/
+
+/*footer*/
+.css_footer_p{
+  text-align: center;
+}
+
 }

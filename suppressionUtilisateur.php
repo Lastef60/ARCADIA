@@ -1,13 +1,19 @@
 <?php
-require_once(__DIR__.'/functions.php');
+require_once(__DIR__ . '/functions.php');
 
-// Appel de la fonction pour se connecter à la BDD
-$pdo = connexionBDD();
+// Vérification si le nom d'utilisateur a été envoyé via POST
+$username = isset($_POST['username']) ? $_POST['username'] : null;
 
-//Appel de la fonction pour supprimer un utilisateur
-try{
-  supprimerUtilisateur($username);
-  echo "Utilisateur supprimé avec succès.";
-}catch (Exception $exception) {
-  echo "Erreur lors de la suppression de l'utilisateur : " .$exception->getMessage();
+if (empty($username)) {
+    die('Erreur : Le nom d\'utilisateur doit être fourni pour supprimer un utilisateur.');
 }
+
+// Appel de la fonction pour supprimer un utilisateur
+try {
+    supprimerUtilisateur($username);
+    echo "Utilisateur supprimé avec succès.";
+} catch (Exception $exception) {
+    echo "Erreur lors de la suppression de l'utilisateur : " . $exception->getMessage();
+}
+
+

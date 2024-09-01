@@ -1,2 +1,5 @@
 # Ignorer le fichier env.php
 /config/env.php
+
+# Ignorer le fichier vendor 
+/vendor

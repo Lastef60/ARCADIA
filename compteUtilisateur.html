@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gestion des utilisateurs</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<h2>CREATION COMPTE UTILISATEUR</h2>
-<P>Afin de créer un compte utilisateur à un nouvel employé, merci de completer le formulaire suivant.</P>
+  <h2>CREATION COMPTE UTILISATEUR</h2>
+  <P>Afin de créer un compte utilisateur à un nouvel employé, merci de completer le formulaire suivant.</P>
 
-<form method="post" action="creationUtilisateur.php"><!--mettre dans action nom du fichier qui recupère l'info de connexion-->
+  <form class="css_form" method="post" action="creationUtilisateur.php">
+    <!--mettre dans action nom du fichier qui recupère l'info de connexion-->
     <label for="username">Nom d'utilisateur:</label>
     <input type="text" id="username" name="username" required>
 
@@ -27,27 +30,28 @@
 
     <fieldset>
       <legend>rôle</legend>
-        <label for="veterinaire">
+      <label for="veterinaire">
         <input type="radio" id="veterinaire" name="role_id" value="2" required>
         vétérinaire</label>
-        <label for="employe">
+      <label for="employe">
         <input type="radio" id="employe" name="role_id" value="3" required>
         employé</label>
     </fieldset>
 
     <input type="submit" value="enregistrer"></input>
-</form>
+  </form>
 
 
 
-<h2>SUPPRESSION COMPTE UTILISATEUR</h2>
+  <h2>SUPPRESSION COMPTE UTILISATEUR</h2>
 
-<form method="post" action="suppressionUtilisateur.php">
-  <label for="username">Nom d'utilisateur à supprimer:</label>
+  <form class="css_form" method="post" action="suppressionUtilisateur.php">
+    <label for="username">Nom d'utilisateur à supprimer:</label>
     <input id="username" name="username" required>
-  
+
     <input type="submit" value="Supprimer">
-</form>
+  </form>
 
 </body>
+
 </html>

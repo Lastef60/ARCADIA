@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/functions.php');
+require_once(__DIR__ . '/functions.php');
 // Appel de la fonction pour se connecter à la BDD
 $pdo = connexionBDD();
 
@@ -8,11 +8,11 @@ if (isset($_POST['upload'])) {
   //verif si telechargement ok
   if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
     //recup des données de l'img
-    $image= $_FILES['image']['tmp_name'];
-    $image_data = file_get_contents($image);//lecture du contenu de l'img
+    $image = $_FILES['image']['tmp_name'];
+    $image_data = file_get_contents($image); //lecture du contenu de l'img
     $image_name = $_POST['image_name']; // recup image_name de l'img soumis dans le form
 
-    try{
+    try {
       //prepa et execution requete sql envoi bdd
       $stmt = $pdo->prepare("INSERT INTO image(image_data, image_name) VALUES (:image_data, :image_name)");
       $stmt->bindParam(':image_data', $image_data, PDO::PARAM_LOB); //lier les données de l'image
@@ -27,19 +27,18 @@ if (isset($_POST['upload'])) {
       $upload_file = $upload_dir . basename($_FILES['image']['name']);
 
       //on déplace le fichier télécharger vers le repertoire de telechargment
-      if(move_uploaded_file($image, $upload_file)) {
+      if (move_uploaded_file($image, $upload_file)) {
         echo "l'image a été telechargée et enregistrée avec succès.";
-      }else{
+      } else {
         echo "une erreur s'est produite lors du déplacement de l'image.";
       }
-    }catch (PDOException $e){
+    } catch (PDOException $e) {
       //gérer les erreurs de telechargement de fichier
       echo "Erreur lors de l'insertion dans la base de donnée : " . $e->getMessage();
     }
-
-  }else{
+  } else {
     echo "Erreur de téléchargement : " . $_FILES['image']['error'];
   }
-}else{
+} else {
   echo "Le formulaire n'a pas été envoyé.";
 }

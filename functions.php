@@ -1,7 +1,11 @@
 <?php
 require_once(__DIR__ . '/config/env.php'); //apport des const env.php
+require_once(__DIR__ . '/vendor/autoload.php');
 
-function connexionBDD() {
+use MongoDB\Client;
+
+function connexionBDD()
+{
   // try-catch pour attraper les erreurs de connexion
   try {
     $pdo = new PDO(
@@ -9,55 +13,96 @@ function connexionBDD() {
       DB_ARCADIA_USER,
       DB_ARCADIA_PASSWORD
     );
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // définir le mode d'erreur en mode Exception
-    return $pdo;//retourne l'objet PDO sinon pb dans uplaod.php
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // def le mode d'erreur en mode Exception
+    return $pdo; //retourne l'objet PDO sinon pb dans uplaod.php
     //echo('connexion réussie');
   } catch (Exception $exception) {
+    //eeror_log suivant pour ne pas afficher les données sensibles ex mdp
+    error_log('Erreur de connexion à la base de données : ' . $exception->getMessage());
     die('Erreur : ' . $exception->getMessage());
   }
 }
 
-function ajouterUtilisateur($username, $password, $nom, $prenom, $role_id) {
-  $pdo = connexionBDD();
-  
-  // hashage mdp avec SHA2
-  $hashed_password = hash('sha256', $password);
-  
-  // insertion des données (preparation + execution)
-  $stmt = $pdo->prepare('INSERT INTO utilisateur (username, password, nom, prenom, role_id) VALUES (?, ?, ?, ?, ?)');
-  $stmt->execute([$username, $hashed_password, $nom, $prenom, $role_id]);
-  
-  // Fermer la connexion
-  $pdo = null;
+function ajouterUtilisateur($username, $password, $nom, $prenom, $role_id)
+{
+    $pdo = connexionBDD();
+
+    if ($password === null) {
+        throw new Exception('Le mot de passe ne peut pas être nul.');
+    }
+
+    // hashage mdp avec SHA2
+    $hashed_password = hash('sha256', $password);
+
+    // insertion des données (preparation + execution)
+    $stmt = $pdo->prepare('INSERT INTO utilisateur (username, password, nom, prenom, role_id) VALUES (?, ?, ?, ?, ?)');
+    $stmt->execute([$username, $hashed_password, $nom, $prenom, $role_id]);
+
+    // Fermer la connexion
+    $pdo = null;
 }
 
-function supprimerUtilisateur($username) {
-  $pdo = connexionBDD();
-  
-  // suppression des données (preparation + execution)
-  $stmt = $pdo->prepare('DELETE FROM utilisateur WHERE username = ?');
-  $stmt->execute([$username]);
-  
-  // Fermer la connexion
-  $pdo = null;
+function supprimerUtilisateur($username)
+{
+    // Vérification si le nom d'utilisateur est fourni
+    if (empty($username)) {
+        throw new Exception('Le nom d\'utilisateur ne peut pas être vide.');
+    }
+
+    $pdo = connexionBDD();
+
+    try {
+        // Préparation de la requête pour supprimer l'utilisateur
+        $stmt = $pdo->prepare('DELETE FROM utilisateur WHERE username = ?');
+        $stmt->execute([$username]);
+
+        if ($stmt->rowCount() === 0) {
+            throw new Exception('Aucun utilisateur trouvé avec ce nom d\'utilisateur.');
+        }
+
+        echo "Utilisateur supprimé avec succès.";
+    } catch (Exception $e) {
+        echo 'Erreur lors de la suppression de l\'utilisateur : ' . $e->getMessage();
+    } finally {
+        // Fermer la connexion
+        $pdo = null;
+    }
 }
+
 //connexion bdd nosql mongodb
-function connexionArcadiaMongoBDD() {
-    $client = new MongoDB\Client("mongodb://localhost:27017");
-    //Sélectionner la base de données
-    $database = $client->aracadia_mongodb;
-    //choisir la collection (= table en SQL)
-    $collection = $database->animal;
-    // Récup tous les documents dans la collection
-    $animals = $collection->find();
-}
+function connexionArcadiaMongoBDD()
+{
+  $uri = sprintf(
+    'mongodb://%s:%s',
+    DB_MONGO_HOST,
+    DB_MONGO_PORT,
+  );
+  $client = new MongoDB\Client($uri);
+  $database = $client->selectDatabase('arcadia_mongodb');
+  return $database;
+  try {
+    $database = connexionArcadiaMongoBDD();
+    echo "Connexion MongoDB réussie.";
 
+    // Optionnel : Test de la collection "animal" pour vérifier l'accès
+    $collection = $database->selectCollection('animal');
+    $result = $collection->findOne();
+    if ($result) {
+      echo "Test de collection réussi.";
+    } else {
+      echo "La collection 'animal' est vide ou n'existe pas.";
+    }
+  } catch (Exception $e) {
+    echo 'Erreur de connexion MongoDB : ' . $e->getMessage();
+  }
+}
 
 //fonction pour les animaux de habitats.php : recup des données à afficher des animaux
-function fichierAnimal($pdo) {
+function fichierAnimal($pdo)
+{
   // Préparation de la requête
   $queryAnimals = $pdo->prepare(
-      "SELECT
+    "SELECT
           a.prenom,
           a.genre,
           a.age,
@@ -71,17 +116,18 @@ function fichierAnimal($pdo) {
 
   // Exécution de la requête
   if (!$queryAnimals->execute()) {
-      // Affichage des erreurs SQL
-      $errorInfo = $queryAnimals->errorInfo();
-      echo "SQL Error: " . htmlspecialchars($errorInfo[2]);
-      exit;
+    // Affichage des erreurs SQL
+    $errorInfo = $queryAnimals->errorInfo();
+    echo "SQL Error: " . htmlspecialchars($errorInfo[2]);
+    exit;
   }
 
   // Récupération des résultats
   return $queryAnimals->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function ajouterRapportVeto($date, $detail, $etat_animal, $nourriture, $grammage, $prenom_animal) {
+function ajouterRapportVeto($date, $detail, $etat_animal, $nourriture, $grammage, $prenom_animal)
+{
   $pdo = connexionBDD();
   try {
     // ID de l'animal à partir du prénom car veto ne connait pas l'ID
@@ -106,7 +152,8 @@ function ajouterRapportVeto($date, $detail, $etat_animal, $nourriture, $grammage
   }
 }
 
-function modifierHabitat ($nom, $description, $commentaire_habitat, $nom_habitat) {
+function modifierHabitat($nom, $description, $commentaire_habitat, $nom_habitat)
+{
   $pdo = connexionBDD();
   try {
     //id habitat pour reconnaitre avec le nom de l'habitat
@@ -121,21 +168,22 @@ function modifierHabitat ($nom, $description, $commentaire_habitat, $nom_habitat
     //requete pour modifier les données de l'habitat
     $stmt = $pdo->prepare('UPDATE habitat SET nom = ?, description = ?, commentaire_habitat = ? WHERE habitat_id = ?');
     $stmt->execute([$nom, $description, $commentaire_habitat, $habitat_id]);
-  }catch (Exception $e) {
-    die('Erreur : '.$e->getMessage());
-  } finally{
+  } catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+  } finally {
     $pdo = null;
   }
 }
 
-function recupAvis () {
+function recupAvis()
+{
   $pdo = connexionBDD();
   //requete recup avis dans bdd
-$queryAvis = $pdo->prepare("SELECT pseudo, commentaire, date_publication FROM avis ORDER BY date_publication DESC LIMIT 5");
-// ORDER BY date DESC LIMIT 5 = selection des 5 derniers avis
-$queryAvis ->execute();
-$avisVisiteurs = $queryAvis->fetchAll(PDO::FETCH_ASSOC);
-// Fermer la connexion
-$pdo = null;
-return $avisVisiteurs;
+  $queryAvis = $pdo->prepare("SELECT pseudo, commentaire, date_publication FROM avis ORDER BY date_publication DESC LIMIT 5");
+  // ORDER BY date DESC LIMIT 5 = selection des 5 derniers avis
+  $queryAvis->execute();
+  $avisVisiteurs = $queryAvis->fetchAll(PDO::FETCH_ASSOC);
+  // Fermer la connexion
+  $pdo = null;
+  return $avisVisiteurs;
 }

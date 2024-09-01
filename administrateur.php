@@ -1,31 +1,33 @@
 <?php
-require_once(__DIR__.'/functions.php');
+require_once(__DIR__ . '/functions.php'); //recup fichier des fonctions
 
-$pdo = connexionBDD();
+$pdo = connexionBDD(); //connexion bdd mariadb
 
 // requete pr recuperer liste des animaux pour form
-$sql = "SELECT prenom FROM animal";
-$stmt = $pdo->query($sql); 
+$sql = "SELECT prenom FROM animal"; //recup tous les prenoms des animaux depuis la table animal
+$stmt = $pdo->query($sql); //on stock les infos
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>page administrateur</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <h1>Bienvenue José</h1>
-  <?php require_once(__DIR__.'/header.php'); ?>
+  <?php require_once(__DIR__ . '/header.php'); ?> <!--recup fihcier header-->
   <p>Veuillez selectionner votre tâche</p>
 
   <p>Pour ajouter des nouvelles photos à la base de donnée Arcadia, merci de
     <a class="js_admin_bddimg" href="./upload.html">cliquez ici</a>
   </p>
 
-  <p>Pour gerer les connexions de vos vétérinaires et vos employés, merci de 
+  <p>Pour gerer les connexions de vos vétérinaires et vos employés, merci de
     <a class="js_admin_bdduser" href="./compteUtilisateur.html">cliquez ici</a>
   </p>
 
@@ -41,14 +43,20 @@ $stmt = $pdo->query($sql);
     <a class="js_admin_bddanimal" href="./compteAnimal.html">page animal</a>
   </p>
 
+  <p>Pour voir le nombre de clics sur chaque animal, veuillez visiter le
+    <a href="dash.php">dashboard</a>.
+  </p>
+
+
   <p>Pour consulter le rapport des vétérinaires</p>
   <form method="POST" action="">
     <label for="animal_name">Sélectionner le prénom de l'animal :</label>
     <select id="animal_name" name="animal_name" required>
       <option value="">--Sélectionner un animal--</option>
       <?php
-      if ($stmt->rowCount() > 0) {
+      if ($stmt->rowCount() > 0) { //$stmt->rowCount()= si nombre de ligne > 0
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          //boucle pour chaque ligne. PDO::FETCH_ASSOC = tableau utilise nom de colonne comme clés
           echo "<option value=\"" . htmlspecialchars($row['prenom']) . "\">" . htmlspecialchars($row['prenom']) . "</option>";
         }
       }
@@ -66,14 +74,14 @@ $stmt = $pdo->query($sql);
             FROM rapport_veterinaire rv 
             JOIN animal a ON rv.animal_id = a.animal_id 
             WHERE a.prenom = :prenom";
-    
+
     // Préparation et exécution de la requête
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['prenom' => $animal_name]);
 
     if ($stmt->rowCount() > 0) {
       echo "<h2>Rapports pour l'animal : " . htmlspecialchars($animal_name) . "</h2>";
-      echo "<table border='1'>";
+      echo "<table class='css_table'>";
       echo "<tr><th>Date</th><th>Détail</th><th>État de l'animal</th><th>Nourriture</th><th>Grammage</th></tr>";
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>";
@@ -89,7 +97,10 @@ $stmt = $pdo->query($sql);
       echo "<p>Aucun rapport trouvé pour cet animal.</p>";
     }
   }
+
+
   ?>
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__.'/functions.php');
-require_once(__DIR__.'/variables.php'); //y compris variables pr recup données du form
+require_once(__DIR__ . '/functions.php');
+require_once(__DIR__ . '/variables.php'); //y compris variables pr recup données du form
 // Appel de la fonction pour se connecter à la BDD
 $pdo = connexionBDD();
 
