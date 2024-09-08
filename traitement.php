@@ -1,5 +1,3 @@
-<!--page de gestion du formulaire de contact.php-->
-
 <?php
 
 

@@ -10,7 +10,13 @@
 
 <body>
   <?php require_once(__DIR__ . '/header.php'); ?>
-  <h1>c'est ok</h1>
+  <h1>Nous avons reçu votre message </h1>
+
+  <p class="css_succesAvis_p">
+  Nous vous remercions d'avoir pris le temps de nous écrire.  
+  Notre équipe a bien receptionné votre avis. Après verification,
+  il sera publié sur la page d'accueil de notre site.
+  </p>
 
   <?php require_once(__DIR__ . '/footer.php'); ?>
   <script src="script.js"></script>

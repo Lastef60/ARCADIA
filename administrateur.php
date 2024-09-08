@@ -56,7 +56,7 @@ $stmt = $pdo->query($sql); //on stock les infos
       <?php
       if ($stmt->rowCount() > 0) { //$stmt->rowCount()= si nombre de ligne > 0
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          //boucle pour chaque ligne. PDO::FETCH_ASSOC = tableau utilise nom de colonne comme clés
+          //boucle pour chaque ligne. PDO::FETCH_ASSOC = tableau utilise nom de colonne comme clefs
           echo "<option value=\"" . htmlspecialchars($row['prenom']) . "\">" . htmlspecialchars($row['prenom']) . "</option>";
         }
       }

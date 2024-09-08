@@ -14,8 +14,8 @@
   <!-- l'entête du site -->
   <?php require_once(__DIR__ . '/header.php'); ?>
 
-  <h1 class="animate__animated animate__wobble">Donnez nous votre avis ...</h1>
-  >Que pensez vous d'Arcadia ?</h1>
+  <h1 class="animate__animated animate__wobble">Donnez nous votre avis ...
+  </h1>
 
   <p class="css_contact_p">
     Vous êtes venus nous voir, dites nous ce que vous avez pensez de votre visite.

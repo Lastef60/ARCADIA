@@ -10,10 +10,8 @@
 
 <body>
   <?php require_once(__DIR__ . '/header.php'); ?>
-  <h1>Une erreur s'est produite</h1>
-  <p>
-
-  </p>
+  <h1 class="css_erreurAvis_h1">Une erreur s'est produite</h1>
+  
   <?php require_once(__DIR__ . '/footer.php'); ?>
   <script src="script.js"></script>
 </body>

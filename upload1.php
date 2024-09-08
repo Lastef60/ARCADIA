@@ -10,6 +10,10 @@
 </head>
 
 <body>
+  <?php require_once(__DIR__.'/header.php');?>
+
+  <h1>page de telechargement des photos</h1>
+
   <form class="css_form" action="upload.php" method="post" enctype="multipart/form-data">
     <!--mettre dans action le nom du fichier qui va gerer le form-->
     <input type="file" name="image" accept="image/*" required>
