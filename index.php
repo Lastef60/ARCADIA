@@ -14,6 +14,7 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explorez le Zoo Arcadia en Bretagne, découvrez des habitats fascinants comme la jungle, la savane et le marais. Apprenez sur la conservation de la faune et préparez votre visite avec nos services.">
   <title>ZOO ARCADIA</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -27,7 +28,7 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
     <p>
       Bienvenue au Zoo Arcadia, un véritable joyau écologique niché en Bretagne, au cœur de la légendaire
       forêt de Brocéliande, un lieu empreint de mystère et de magie.
-      <img class="css_img_indexIntro" src="./uploads/img/jungle_tictac.jpg" alt="Jungle Tictac" />
+      <img class="css_img_indexIntro" src="./uploads/img/jungle_tictac.jpg" alt="Jungle Tictac au Zoo Arcadia" />
       Depuis sa création en 1960, le Zoo Arcadia, sous la direction passionnée et visionnaire de José,
       s'est engagé avec détermination dans la préservation des espèces menacées et la protection précieuse
       de la biodiversité. Nous avons à cœur de faire de notre zoo un sanctuaire où la faune trouve refuge
@@ -40,7 +41,7 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
       végétation dense abritent une faune vibrante et diversifiée. Ensuite, découvrez la savane étendue,
       un espace ouvert et ensoleillé qui reflète la grandeur des plaines africaines, avec ses habitants
       emblématiques comme les lions et les girafes.
-      <img class="css_img_indexIntro" src="./uploads/img/jungle_hope.jpg" alt="Jungle Hope" />
+      <img class="css_img_indexIntro" src="./uploads/img/jungle_hope.jpg" alt="Jungle Hope au Zoo Arcadia" />
       Enfin, laissez-vous envoûter par le marais mystérieux, un écosystème aquatique qui regorge de vie
       et de couleurs, offrant un aperçu fascinant de la faune des zones humides.
     </p>
@@ -48,7 +49,7 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
       Mais le Zoo Arcadia n'est pas seulement un lieu de découverte et d'émerveillement. Nous nous engageons
       également à jouer un rôle essentiel dans la conservation de la faune. Notre mission est de sensibiliser
       et d'éduquer les visiteurs de tous âges sur l'importance cruciale de protéger notre planète et ses habitants.
-      <img class="css_img_indexIntro" src="./uploads/img/marais_bisco.jpg" alt="Marais Bisco" />
+      <img class="css_img_indexIntro" src="./uploads/img/marais_bisco.jpg" alt="Marais Bisco au Zoo Arcadia" />
       À travers nos programmes éducatifs, nos expositions interactives et nos initiatives de conservation,
       nous cherchons à inspirer une prise de conscience et une action en faveur de la sauvegarde des espèces
       et des habitats naturels. Venez nous rendre visite et plongez dans un univers où chaque moment est une
@@ -56,7 +57,7 @@ $avisVisiteurs = array_slice($avisVisiteurs, -5);
     </p>
   </div>
 
-  <h2>Nos habitats et nos animaux</h2>
+  <h2>Découvrez nos habitats : Jungle, Savane, Marais au Zoo Arcadia</h2>
   <p>Plongez dans une aventure véritablement inoubliable en explorant nos divers habitats fascinants – la jungle dense et luxuriante, la savane étendue et ensoleillée, ainsi que le marais mystérieux et verdoyant. Chaque zone offre une expérience unique, vous permettant de découvrir et d’observer de près une incroyable variété de faune dans des environnements naturels soigneusement recréés. Vous aurez l'occasion d'admirer les majestueux félins, les singes espiègles, les oiseaux exotiques, ainsi que d'autres créatures fascinantes qui habitent ces écosystèmes diversifiés. Que vous soyez un passionné de nature ou un visiteur curieux, chaque coin de notre zoo promet de vous émerveiller avec des rencontres animales captivantes et des moments mémorables. Venez vivre cette aventure immersive et laissez-vous transporter dans le monde merveilleux de la faune sauvage !</p>
   <div class="css_index_habitat">
     <div class="css_index_habitat_item">

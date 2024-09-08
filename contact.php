@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Partagez votre expérience avec nous ! Laissez un avis sur votre visite au Zoo Arcadia, faites-nous part de vos impressions et suggestions. Nous apprécions vos retours pour améliorer nos services et offrir une expérience inoubliable à nos visiteurs.">
   <title>Avis</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">

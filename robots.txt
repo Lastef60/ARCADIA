@@ -1,0 +1,16 @@
+# Interdire l'accès à tout le site par défaut
+User-agent: *
+Disallow: /
+
+# Autoriser l'accès uniquement aux répertoires et fichiers spécifiés
+Allow: /index.php
+Allow: /contact.php
+Allow: /habitats.php
+Allow: /services.php
+Allow: /login.php
+Allow: /uploads/img/
+Allow: /sitemap.xml
+
+
+# Spécifier l'emplacement du sitemap XML (url du site à indiquer apres deploiement)
+Sitemap: 
