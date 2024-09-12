@@ -24,27 +24,27 @@ $stmt = $pdo->query($sql); //on stock les infos
   <p>Veuillez selectionner votre tâche</p>
 
   <p>Pour ajouter des nouvelles photos à la base de donnée Arcadia, merci de
-    <a class="js_admin_bddimg" href="./upload.html">cliquez ici</a>
+    <a class="js_admin_bddimg" href="https://stephaniet.alwaysdata.net/upload.html">cliquez ici</a>
   </p>
 
   <p>Pour gerer les connexions de vos vétérinaires et vos employés, merci de
-    <a class="js_admin_bdduser" href="./compteUtilisateur.html">cliquez ici</a>
+    <a class="js_admin_bdduser" href="https://stephaniet.alwaysdata.net/utilisateur.html">cliquez ici</a>
   </p>
 
   <p>Afin de gerer les services proposez pour le zoo, merci de vous rendre sur cette page :
-    <a class="js_admin_bddservice" href="./compteService.php">page service</a>
+    <a class="js_admin_bddservice" href="https://stephaniet.alwaysdata.net/compteService.php">page service</a>
   </p>
 
   <p>Afin de gerer les habitats du zoo, merci de vous rendre sur cette page :
-    <a class="js_admin_bddhabitat" href="./compteHabitat.php">page habitat</a>
+    <a class="js_admin_bddhabitat" href="https://stephaniet.alwaysdata.net/compteHabitat.php">page habitat</a>
   </p>
 
   <p>Afin de gerer les animaux présents dans le zoo, merci de vous rendre sur cette page :
-    <a class="js_admin_bddanimal" href="./compteAnimal.html">page animal</a>
+    <a class="js_admin_bddanimal" href="https://stephaniet.alwaysdata.net/compteAnimal.php">page animal</a>
   </p>
 
   <p>Pour voir le nombre de clics sur chaque animal, veuillez visiter le
-    <a href="dash.php">dashboard</a>.
+    <a href="https://stephaniet.alwaysdata.net/dash.php">dashboard</a>.
   </p>
 
 
