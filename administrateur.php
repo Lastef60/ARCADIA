@@ -24,7 +24,7 @@ $stmt = $pdo->query($sql); //on stock les infos
   <p>Veuillez selectionner votre tâche</p>
 
   <p>Pour ajouter des nouvelles photos à la base de donnée Arcadia, merci de
-    <a class="js_admin_bddimg" href="https://stephaniet.alwaysdata.net/upload.html">cliquez ici</a>
+    <a class="js_admin_bddimg" href="https://stephaniet.alwaysdata.net/upload1.php">cliquez ici</a>
   </p>
 
   <p>Pour gerer les connexions de vos vétérinaires et vos employés, merci de
