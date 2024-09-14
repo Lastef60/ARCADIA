@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Vérifier si l'insertion a réussi
   if ($success) {
     // Redirection vers la page de succès
-    header('Location: succesAvis.html');
+    header('Location: succesAvis.php');
   } else {
     // Redirection vers la page d'erreur
-    header('Location: erreurAvis.html');
+    header('Location: erreurAvis.php');
   }
   exit();
 }
