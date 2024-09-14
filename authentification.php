@@ -8,6 +8,10 @@ require_once(__DIR__ . '/variables.php'); //y compris variables pr recup donnée
 // se connecter à la base de donnée
 $pdo = connexionBDD();
 
+// Récupération des données du formulaire POST
+$username = $_POST['username'];
+$password = $_POST['password'];
+
 // hash du mdp avec la methode SHA2 car methode utilisée dans mariadb
 $hashedPassword = hash('sha256', $password);
 
@@ -34,22 +38,24 @@ echo "Hashed password from database: " . $user['password'] . "<br>";
 
 //faire switch pour renvoyer vers les pages correspondantes aux roles
 //si le mot de passa haché = mdp user
+//exit pour arreter le csript apres direction
 if ($hashedPassword === $user['password']) {
-  echo "Passwords match.<br>";
+  echo "Les mots de passe correspondent.<br>";
   switch ($user['role']) {
-    case 'admin':
-      header('Location: administrateur.php');
-      break;
-    case 'veterinaire':
-      header('Location: veterinaire.php');
-      break;
-    case 'employes':
-      header('Location: employe.php');
-      break;
-    default:
-      echo "Vous n'êtes pas autorisé à vous connecter";
-      break;
+      case 'admin':
+          header('Location: administrateur.php');
+          exit;
+      case 'veterinaire':
+          header('Location: veterinaire.php');
+          exit;
+      case 'employes':
+          header('Location: employe.php');
+          exit;
+      default:
+          echo "Vous n'êtes pas autorisé à vous connecter.";
+          exit;
   }
 } else {
   echo "Nom d'utilisateur ou mot de passe incorrect";
+  exit;
 }
