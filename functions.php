@@ -70,42 +70,20 @@ function supprimerUtilisateur($username)
 }
 
 //connexion bdd nosql mongodb
-{
-  try {
-      // Construisez l'URI de connexion avec les nouvelles informations
-      $uri = sprintf('mongodb://%s:%s', DB_MONGO_HOST, DB_MONGO_PORT);
-      $client = new MongoDB\Client($uri);
-      
-      // Sélectionnez la base de données correcte
-      $database = $client->selectDatabase('stephaniet_arcadia'); // Utilisez le nouveau nom de la base de données
-      
-      echo "Connexion MongoDB réussie.";
-      
-      // Optionnel : Test de la collection "animal" pour vérifier l'accès
-      $collection = $database->selectCollection('animal');
-      $result = $collection->findOne();
-      if ($result) {
-          echo "Test de collection réussi.";
-      } else {
-          echo "La collection 'animal' est vide ou n'existe pas.";
-      }
-
-      return $database;
-  } catch (Exception $e) {
-      echo 'Erreur de connexion MongoDB : ' . $e->getMessage();
-      return null; 
-  }
-}
-/*function connexionArcadiaMongoBDD()
+// Connexion à la base de données MongoDB
+function connexionArcadiaMongoBDD()
 {
     try {
+        // Construction de l'URI de connexion
         $uri = sprintf('mongodb://%s:%s', DB_MONGO_HOST, DB_MONGO_PORT);
         $client = new MongoDB\Client($uri);
-        $database = $client->selectDatabase('arcadia_mongodb');
+        
+        // Sélection de la base de données
+        $database = $client->selectDatabase('stephaniet_arcadia'); // Nom correct de la base de données
         
         echo "Connexion MongoDB réussie.";
         
-        // Optionnel : Test de la collection "animal" pour vérifier l'accès
+        // Test optionnel de la collection 'animal'
         $collection = $database->selectCollection('animal');
         $result = $collection->findOne();
         if ($result) {
@@ -119,7 +97,8 @@ function supprimerUtilisateur($username)
         echo 'Erreur de connexion MongoDB : ' . $e->getMessage();
         return null; 
     }
-}*/
+}
+
 
 //fonction pour les animaux de habitats.php : recup des données à afficher des animaux
 function fichierAnimal($pdo)
