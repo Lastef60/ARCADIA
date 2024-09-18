@@ -74,12 +74,12 @@ function supprimerUtilisateur($username)
 function connexionArcadiaMongoBDD()
 {
     try {
-        // Construction de l'URI de connexion
+        // Construction de l'URI de connexion avec les variables d'environnement
         $uri = sprintf('mongodb://%s:%s', DB_MONGO_HOST, DB_MONGO_PORT);
         $client = new MongoDB\Client($uri);
         
         // Sélection de la base de données
-        $database = $client->selectDatabase('stephaniet_arcadia'); // Nom correct de la base de données
+        $database = $client->selectDatabase('stephaniet_arcadia');
         
         echo "Connexion MongoDB réussie.";
         

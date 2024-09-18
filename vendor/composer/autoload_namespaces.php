@@ -6,4 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Doctrine\\ODM\\CouchDB' => array($vendorDir . '/doctrine/couchdb-odm/lib'),
+    'Doctrine\\CouchDB' => array($vendorDir . '/doctrine/couchdb/lib'),
 );
