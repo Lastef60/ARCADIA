@@ -35,6 +35,7 @@ $stmt = $pdo->prepare("
 $stmt->execute(['username' => $username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
 if (!$user || $hashedPassword !== $user['password']) {
     echo "Nom d'utilisateur ou mot de passe incorrect";
     exit;

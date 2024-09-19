@@ -5,6 +5,13 @@ $pdo = connexionBDD();
 // Gestion des avis (valider/supprimer)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['id'])) {
   $id = $_POST['id'];
+
+  // Vérification de l'ID
+  if (empty($id)) {
+    echo "Erreur : l'ID est manquant.";
+    exit();
+  }
+
   if ($_POST['action'] === 'valider') {
     // Récupérer l'avis depuis la table temporaire
     $stmt = $pdo->prepare("SELECT * FROM avis_temp WHERE id = ?");
@@ -53,13 +60,12 @@ $avis = $pdo->query("SELECT * FROM avis_temp")->fetchAll(PDO::FETCH_ASSOC);
 
   <p>Merci de bien vouloir valider ou supprimer les avis en attente de validation.</p>
 
-  <?php if ($avis): //verif si avis présent
-  ?>
-    <?php foreach ($avis as $avi): // on boucle sur les avis
-    ?>
-      <div><!--affichage des données-->
-        <p>Pseudo:<?= htmlspecialchars($avi['pseudo'])?></p>
-        <p>Message:<?= htmlspecialchars($avi['message']) ?></p>
+  <?php if ($avis): ?>
+    <?php foreach ($avis as $avi): ?>
+      <div>
+        <p>Pseudo:<?= htmlspecialchars($avi['pseudo'] ?? 'Inconnu') ?></p>
+        <p>Message:<?= htmlspecialchars($avi['message'] ?? 'Pas de message') ?></p>
+        <p>ID de l'avis: <?= htmlspecialchars($avi['id']) ?></p> <!-- Affichage de l'ID pour le débogage -->
         <form method="post">
           <input type="hidden" name="id" value="<?= htmlspecialchars($avi['id']) ?>">
           <button type="submit" name="action" value="valider">Valider</button>
