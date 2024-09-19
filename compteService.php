@@ -50,26 +50,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //verifie si methode utilisée = pos
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <title>Gestion des services du Zoo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<body>>
 
-<body>
+<h2>Modifier les horaires</h2>
+<form class="css_form" method="post">
+  <?php foreach ($horaires as $horaire): ?>
+    <div>
+      <label for="ouverture_<?= $horaire['id'] ?>"><?= htmlspecialchars($horaire['jour'], ENT_QUOTES, 'UTF-8') ?> Ouverture:</label>
+      <input type="time" id="ouverture_<?= $horaire['id'] ?>" name="horaire[<?= $horaire['id'] ?>][ouverture]" value="<?= htmlspecialchars($horaire['ouverture'], ENT_QUOTES, 'UTF-8') ?>">
+      
+      <label for="fermeture_<?= $horaire['id'] ?>">Fermeture:</label>
+      <input type="time" id="fermeture_<?= $horaire['id'] ?>" name="horaire[<?= $horaire['id'] ?>][fermeture]" value="<?= htmlspecialchars($horaire['fermeture'], ENT_QUOTES, 'UTF-8') ?>">
+    </div>
+  <?php endforeach; ?>
+  <button type="submit" name="update_horaires">Enregistrer les modifications</button>
+</form>
 
-  <h2>Modifier les horaires</h2>
-  <form class="css_form" method="post">
-    <?php foreach ($horaires as $horaire): ?>
-      <div>
-        <label><?= htmlspecialchars($horaire['jour'], ENT_QUOTES, 'UTF-8') ?>:</label>
-        <input type="time" name="horaire[<?= $horaire['id'] ?>][ouverture]" value="<?= htmlspecialchars($horaire['ouverture'], ENT_QUOTES, 'UTF-8') ?>">
-        <input type="time" name="horaire[<?= $horaire['id'] ?>][fermeture]" value="<?= htmlspecialchars($horaire['fermeture'], ENT_QUOTES, 'UTF-8') ?>">
-      </div>
-    <?php endforeach; ?>
-    <button type="submit" name="update_horaires">Enregistrer les modifications</button>
-  </form>
 
   <h2>Modifier les Services</h2>
   <form class="css_form" method="post">

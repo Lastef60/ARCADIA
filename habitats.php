@@ -53,6 +53,7 @@ $habitatMapping = [
   6 => 'marais'
 ];
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
