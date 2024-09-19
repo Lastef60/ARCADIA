@@ -28,7 +28,7 @@ $stmt = $pdo->query($sql); //on stock les infos
   </p>
 
   <p>Pour gerer les connexions de vos vétérinaires et vos employés, merci de
-    <a class="js_admin_bdduser" href="https://stephaniet.alwaysdata.net/utilisateur.html">cliquez ici</a>
+    <a class="js_admin_bdduser" href="https://stephaniet.alwaysdata.net/compteUtilisateur.html">cliquez ici</a>
   </p>
 
   <p>Afin de gerer les services proposez pour le zoo, merci de vous rendre sur cette page :
