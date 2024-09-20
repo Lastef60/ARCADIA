@@ -7,6 +7,7 @@ $services = $pdo->query("SELECT * FROM service")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupérer les horaires depuis la base de données
 $horaires = $pdo->query("SELECT * FROM horaire")->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -67,16 +68,16 @@ $horaires = $pdo->query("SELECT * FROM horaire")->fetchAll(PDO::FETCH_ASSOC);
     </div>
   </div>
 
+  <div class="css_services_container">
   <h2>Horaires du Zoo</h2>
-  <div class="css_horaires_container">
+  <ul>
     <?php foreach ($horaires as $horaire): ?>
-      <div class="css_horaire">
-        <p><strong><?= htmlspecialchars($horaire['jour'], ENT_QUOTES, 'UTF-8') ?> :</strong></p>
-        <p>Ouverture: <?= htmlspecialchars($horaire['ouverture'], ENT_QUOTES, 'UTF-8') ?></p>
-        <p>Fermeture: <?= htmlspecialchars($horaire['fermeture'], ENT_QUOTES, 'UTF-8') ?></p>
-      </div>
+      <li><?= htmlspecialchars($horaire['jour'], ENT_QUOTES, 'UTF-8') ?> : 
+          Ouverture <?= htmlspecialchars($horaire['ouverture'], ENT_QUOTES, 'UTF-8') ?> - Fermeture <?= htmlspecialchars($horaire['fermeture'], ENT_QUOTES, 'UTF-8') ?>
+      </li>
     <?php endforeach; ?>
-  </div>
+  </ul>
+</div>
 
   <?php require_once(__DIR__ . '/footer.php'); ?>
 </body>
