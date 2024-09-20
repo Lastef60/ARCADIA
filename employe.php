@@ -4,13 +4,18 @@ $pdo = connexionBDD();
 
 // Gestion des avis (valider/supprimer)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['id'])) {
-  $id = $_POST['id'];
+  $id = intval($_POST['id']); // Force conversion en entier
+
 
   // Vérification de l'ID
-  if (empty($id)) {
+   // Ajout du débogage
+   if (empty($id)) {
     echo "Erreur : l'ID est manquant.";
     exit();
+  } else {
+    echo "ID reçu : " . htmlspecialchars($id);
   }
+
 
   if ($_POST['action'] === 'valider') {
     // Récupérer l'avis depuis la table temporaire
