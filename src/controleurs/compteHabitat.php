@@ -1,0 +1,67 @@
+<?php
+
+require_once(__DIR__ . '/../core/Database.php'); // Charger la classe Database
+require_once(__DIR__ . '/../core/HabitatZoo.php'); // Charger la classe Habitat
+
+$success = false;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données du formulaire
+    $nom_habitat = $_POST['name'];
+    $description = $_POST['description'];
+    $commentaire_habitat = $_POST['commentaire_habitat'];
+
+    // Connexion à la base de données et modification de l'habitat
+    try {
+        $database = new Database(); // Créer une instance de la classe Database
+        $pdo = $database->getPDO(); // Obtenir la connexion PDO
+        $habitat = new Habitat($pdo); // Créer une instance de la classe Habitat
+
+        // Appeler la méthode pour modifier l'habitat
+        $habitat->modifier($nom_habitat, $description, $commentaire_habitat, $nom_habitat);
+        $success = true;
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification des habitats</title>
+    <link rel="stylesheet" href="../public/styles.css"> 
+</head>
+
+<body>
+    <?php require_once(__DIR__ . '/../views/header.php'); ?>
+    <h1>Modifications des habitats</h1>
+    <p>Merci de bien vouloir renseigner le formulaire suivant.</p>
+
+    <?php if ($success): ?>
+        <p>Modification de l'habitat faite avec succès.</p>
+    <?php endif; ?>
+    <form class="css_form" id="js_comptaHabitat_form" method="post" action="compteHabitat.php">
+
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="name" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5" cols="33" required></textarea>
+
+        <label for="commentaire_habitat">Commentaire</label>
+        <textarea id="commentaire_habitat" name="commentaire_habitat" rows="7" cols="40" required></textarea>
+
+        <input type="submit" value="Enregistrer">
+
+        <input id="js_reinitialisation" type="button" value="Réinitialiser le formulaire">
+
+    </form>
+
+    <script src="../public/script.js"></script>
+</body>
+
+</html>
