@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Charger les fichiers nécessaires
 require_once(__DIR__ . '/config/env.php');
 require_once(__DIR__ . '/src/models/Database.php'); // Ajouter la classe Database ici
