@@ -2,11 +2,11 @@
 
 // Charger les fichiers nécessaires
 require_once(__DIR__ . '/config/env.php');
-require_once(__DIR__ . '/models/Database.php'); // Ajouter la classe Database ici
-require_once(__DIR__ . '/controllers/ServiceController.php');
-require_once(__DIR__ . '/controllers/HabitatController.php');
-require_once(__DIR__ . '/controllers/AnimalController.php');
-require_once(__DIR__ . 'controllers/AvisController.php');
+require_once(__DIR__ . '/src/models/Database.php'); // Ajouter la classe Database ici
+require_once(__DIR__ . '/src/controllers/ServiceController.php');
+require_once(__DIR__ . '/src/controllers/HabitatController.php');
+require_once(__DIR__ . '/src/controllers/AnimalController.php');
+require_once(__DIR__ . '/src/controllers/AvisController.php');
 
 // Créer une instance de la base de données
 $db = new Database(); // Instanciation de Database
@@ -78,18 +78,18 @@ $action = $_GET['action'] ?? 'list'; // Si aucune action n'est fournie, on affic
 switch ($action) {
     case 'list':
         // Affichez la liste des avis
-        require 'views/avis/list.php';
+        require '/src/views/avis/list.php';
         break;
 
     case 'create':
         // Affichez le formulaire pour ajouter un nouvel avis
-        require 'views/avis/create.php';
+        require '/src/views/avis/create.php';
         break;
 
     case 'update':
         // Vérifiez que l'ID est fourni pour mettre à jour un avis
         if (isset($_GET['id'])) {
-            require 'views/avis/update.php';
+            require '/src/views/avis/update.php';
         } else {
             echo "ID de l'avis manquant pour la mise à jour.";
         }
@@ -98,7 +98,7 @@ switch ($action) {
     case 'delete':
         // Vérifiez que l'ID est fourni pour supprimer un avis
         if (isset($_GET['id'])) {
-            require 'views/avis/delete.php';
+            require '/src/views/avis/delete.php';
         } else {
             echo "ID de l'avis manquant pour la suppression.";
         }
@@ -106,6 +106,6 @@ switch ($action) {
 
     default:
         // Si l'action n'est pas reconnue, afficher la liste des avis par défaut
-        require 'views/avis/list.php';
+        require '/src/views/avis/list.php';
         break;
 }

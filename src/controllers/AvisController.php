@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Avis.php';
+require_once (__DIR__ . '/../models/Avis.php');
 
 class AvisController {
     private $avisModel;

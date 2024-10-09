@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php'; // Adjust path if necessary
+require_once __DIR__ . '/../../vendor/autoload.php'; 
 
 use PHPOnCouch\CouchClient;
 use PDO;

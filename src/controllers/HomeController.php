@@ -8,13 +8,13 @@ class HomeController {
     private $horaireModel;
 
     public function __construct($pdo) {
-        $this->serviceModel = new ServiceZoo($pdo);
+        $this->serviceModel = new Service($pdo);
         $this->horaireModel = new Horaire($pdo);
     }
 
     public function index() {
-        $services = $this->serviceModel->getServices();
-        $horaires = $this->horaireModel->getHoraires();
+        $services = $this->serviceModel->getAllServices();
+        $horaires = $this->horaireModel->getAllHoraires();
 
         return ['services' => $services, 'horaires' => $horaires];
     }

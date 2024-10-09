@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../models/Animal.php');
+require_once(__DIR__ . '/../src/models/Animal.php');
 
 class AnimalController
 {
@@ -16,15 +16,14 @@ class AnimalController
     return $this->animalModel->getAnimalsByHabitat($habitat_id);
   }
 
-
-  // Show a specific animal
+  // Show  animal
   public function show($animal_id)
   {
     $animal = $this->animalModel->getAnimalById($animal_id);
-    require_once(__DIR__ . '/../views/animal/show.php');
+    require_once(__DIR__ . '/../src/views/animal/show.php');
   }
 
-  // Create a new animal
+  // Create  animal
   public function create()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,11 +38,11 @@ class AnimalController
       $this->animalModel->createAnimal($data);
       header('Location: index.php?controller=animal&action=list');
     } else {
-      require_once(__DIR__ . '/../views/animal/create.php');
+      require_once(__DIR__ . '/../src/views/animal/create.php');
     }
   }
 
-  // Edit an animal
+  // Edit  animal
   public function edit($animal_id)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,11 +58,11 @@ class AnimalController
       header('Location: index.php?controller=animal&action=list');
     } else {
       $animal = $this->animalModel->getAnimalById($animal_id);
-      require_once(__DIR__ . '/../views/animal/edit.php');
+      require_once(__DIR__ . '/../src/views/animal/edit.php');
     }
   }
 
-  // Delete an animal
+  // Delete  animal
   public function delete($animal_id)
   {
     $this->animalModel->deleteAnimal($animal_id);
