@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/../src/models/Animal.php');
+require_once(__DIR__ . '/../models/Animal.php');
+
 
 class AnimalController
 {
