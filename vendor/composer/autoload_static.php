@@ -36,6 +36,9 @@ class ComposerStaticInit44237638191d9429d73bab58185c8ec7
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'PHPOnCouch\\Exceptions\\' => 22,
+            'PHPOnCouch\\Adapter\\' => 19,
+            'PHPOnCouch\\' => 11,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
@@ -110,6 +113,18 @@ class ComposerStaticInit44237638191d9429d73bab58185c8ec7
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
+        'PHPOnCouch\\Exceptions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-on-couch/php-on-couch/src/Exceptions',
+        ),
+        'PHPOnCouch\\Adapter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-on-couch/php-on-couch/src/Adapter',
+        ),
+        'PHPOnCouch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-on-couch/php-on-couch/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -160,10 +175,10 @@ class ComposerStaticInit44237638191d9429d73bab58185c8ec7
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            1 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
             2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
     );
 
