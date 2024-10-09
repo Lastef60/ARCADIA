@@ -2,7 +2,7 @@
 
 
 require_once(__DIR__ . '/../models/Habitat.php');
-require_once(__DIR__ . '/../config/database.php'); // Connexion PDO
+require_once(__DIR__ . '/../models/Database.php');
 
 class HabitatController
 {

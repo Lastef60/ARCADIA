@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../../vendor/autoload.php'; 
 
 use PHPOnCouch\CouchClient;
-use PDO;
 
 class Database {
     private $couchClient;
