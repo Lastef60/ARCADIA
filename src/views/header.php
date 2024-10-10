@@ -5,7 +5,7 @@
         <a class="css_header_div_nav_a" href="accueil.php">Accueil</a>
         <a class="css_header_div_nav_a" href="habitat/list.php">Les habitats et leurs animaux</a> 
         <a class="css_header_div_nav_a" href="services.php">Nos services</a> 
-        <a class="css_header_div_nav_a" href="contact.php">Votre avis nous intéresse</a> 
+        <a class="css_header_div_nav_a" href="avis/list.php">Votre avis nous intéresse</a> 
         <a class="css_header_div_nav_a" href="login.php">Connexion</a> 
     </nav>
 </div>

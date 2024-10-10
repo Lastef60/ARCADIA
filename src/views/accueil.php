@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Zoo Arcadia</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../public/styles.css">
 </head>
 <body>
     <?php require_once(__DIR__ . '/header.php'); ?>
@@ -59,6 +59,6 @@
     </div>
 
     <?php require_once(__DIR__ . '/footer.php'); ?>
-    <script src="../public/script.js"></script>
+    <script src="../../public/script.js"></script>
 </body>
 </html>
