@@ -3,7 +3,7 @@
 // Charger les fichiers nécessaires
 require_once(__DIR__ . '/config/env.php');
 echo "Fichier env.php chargé.<br>";
-require_once(__DIR__ . '/src/models/Database.php'); // Ajouter la classe Database ici
+require_once(__DIR__ . '/src/models/Database.php');
 echo "Fichier Database.php chargé.<br>";
 require_once(__DIR__ . '/src/controllers/ServiceController.php');
 echo "ServiceController chargé.<br>";
@@ -15,72 +15,70 @@ require_once(__DIR__ . '/src/controllers/AvisController.php');
 echo "AvisController chargé.<br>";
 
 // Créer une instance de la base de données
-$db = new Database(); // Instanciation de Database
+$db = new Database();
 echo "Instance de Database créée.<br>";
 
 // Récupérer l'URL
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 echo "URL récupérée: $url<br>";
 
-// Définir les routes pour les services et les habitats
+// Définir les routes pour les services, habitats, animaux, et avis
 if ($url === '') {
-    $serviceController = new ServiceController($db->getPdo()); // Passer la connexion PDO
-    $serviceController->list(); // Appeler la méthode pour lister les services
+    $serviceController = new ServiceController($db->getPdo());
+    $services = $serviceController->list();
+    require_once(__DIR__ . '/src/views/service.php');
     echo "Page d'accueil des services chargée.<br>";
     exit;
 } elseif ($url === 'services') {
     $serviceController = new ServiceController($db->getPdo());
-    $serviceController->list();
+    $services = $serviceController->list();
+    require_once(__DIR__ . '/src/views/service.php');
     echo "Liste des services chargée.<br>";
     exit;
 } elseif ($url === 'habitats') {
     $habitatController = new HabitatController($db->getPdo());
-    $habitatController->list();
+    $habitats = $habitatController->list();
+    require_once(__DIR__ . '/src/views/habitat/list.php');
     echo "Liste des habitats chargée.<br>";
     exit;
 } elseif (preg_match('/^habitat\/(\d+)$/', $url, $matches)) {
     $habitatController = new HabitatController($db->getPdo());
-    $habitatController->show($matches[1]);
+    $habitat = $habitatController->show($matches[1]);
+    require_once(__DIR__ . '/src/views/habitat/show.php');
     echo "Habitat avec ID {$matches[1]} chargé.<br>";
     exit;
 } elseif ($url === 'habitat/create') {
     $habitatController = new HabitatController($db->getPdo());
-    $habitatController->create();
+    require_once(__DIR__ . '/src/views/habitat/create.php');
     echo "Formulaire de création d'habitat chargé.<br>";
     exit;
-}
-
-// Routes pour les animaux
-$animalController = new AnimalController($db->getPdo());
-echo "AnimalController initialisé.<br>";
-
-if (isset($_GET['controller']) && $_GET['controller'] === 'animal') {
-    switch ($_GET['action']) {
-        case 'list':
-            $animalController->list($_GET['habitat_id']);
-            echo "Liste des animaux pour l'habitat ID {$_GET['habitat_id']} chargée.<br>";
-            exit;
-        case 'show':
-            $animalController->show($_GET['id']);
-            echo "Détails de l'animal avec ID {$_GET['id']} chargés.<br>";
-            exit;
-        case 'create':
-            $animalController->create();
-            echo "Formulaire de création d'animal chargé.<br>";
-            exit;
-        case 'edit':
-            $animalController->edit($_GET['id']);
-            echo "Formulaire d'édition pour l'animal ID {$_GET['id']} chargé.<br>";
-            exit;
-        case 'delete':
-            $animalController->delete($_GET['id']);
-            echo "Animal avec ID {$_GET['id']} supprimé.<br>";
-            exit;
-        default:
-            http_response_code(404);
-            echo 'Action non trouvée.<br>';
-            exit;
-    }
+} elseif ($url === 'animals') {
+    $animalController = new AnimalController($db->getPdo());
+    $animals = $animalController->list($matches[1]);
+    require_once(__DIR__ . '/src/views/animal/list.php');
+    echo "Liste des animaux chargée.<br>";
+    exit;
+} elseif (preg_match('/^animal\/(\d+)$/', $url, $matches)) {
+    $animalController = new AnimalController($db->getPdo());
+    $animal = $animalController->show($matches[1]);
+    require_once(__DIR__ . '/src/views/animal/show.php');
+    echo "Animal avec ID {$matches[1]} chargé.<br>";
+    exit;
+} elseif ($url === 'animal/create') {
+    $animalController = new AnimalController($db->getPdo());
+    require_once(__DIR__ . '/src/views/animal/create.php');
+    echo "Formulaire de création d'animal chargé.<br>";
+    exit;
+} elseif (preg_match('/^animal\/edit\/(\d+)$/', $url, $matches)) {
+    $animalController = new AnimalController($db->getPdo());
+    require_once(__DIR__ . '/src/views/animal/edit.php');
+    echo "Formulaire d'édition pour l'animal ID {$matches[1]} chargé.<br>";
+    exit;
+} elseif (preg_match('/^animal\/delete\/(\d+)$/', $url, $matches)) {
+    $animalController = new AnimalController($db->getPdo());
+    $animalController->delete($matches[1]);
+    echo "Animal avec ID {$matches[1]} supprimé.<br>";
+    exit;
 }
 
 // Routes pour les avis
