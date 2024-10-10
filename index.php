@@ -22,12 +22,18 @@ echo "Instance de Database créée.<br>";
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 echo "URL récupérée: $url<br>";
 
-// Définir les routes pour les services, habitats, animaux, et avis
+// Définir les routes pour la page d'accueil et les autres pages
 if ($url === '') {
+    // Charger les données nécessaires pour l'accueil
     $serviceController = new ServiceController($db->getPdo());
     $services = $serviceController->list();
-    require_once(__DIR__ . '/src/views/service.php');
-    echo "Page d'accueil des services chargée.<br>";
+
+    $avisController = new AvisController($db->getPdo());
+    $avisVisiteurs = $avisController->list();
+
+    // Charger la page d'accueil
+    require_once(__DIR__ . '/src/views/accueil.php');
+    echo "Page d'accueil chargée.<br>";
     exit;
 } elseif ($url === 'services') {
     $serviceController = new ServiceController($db->getPdo());
@@ -46,38 +52,6 @@ if ($url === '') {
     $habitat = $habitatController->show($matches[1]);
     require_once(__DIR__ . '/src/views/habitat/show.php');
     echo "Habitat avec ID {$matches[1]} chargé.<br>";
-    exit;
-} elseif ($url === 'habitat/create') {
-    $habitatController = new HabitatController($db->getPdo());
-    require_once(__DIR__ . '/src/views/habitat/create.php');
-    echo "Formulaire de création d'habitat chargé.<br>";
-    exit;
-} elseif ($url === 'animals') {
-    $animalController = new AnimalController($db->getPdo());
-    $animals = $animalController->list($matches[1]);
-    require_once(__DIR__ . '/src/views/animal/list.php');
-    echo "Liste des animaux chargée.<br>";
-    exit;
-} elseif (preg_match('/^animal\/(\d+)$/', $url, $matches)) {
-    $animalController = new AnimalController($db->getPdo());
-    $animal = $animalController->show($matches[1]);
-    require_once(__DIR__ . '/src/views/animal/show.php');
-    echo "Animal avec ID {$matches[1]} chargé.<br>";
-    exit;
-} elseif ($url === 'animal/create') {
-    $animalController = new AnimalController($db->getPdo());
-    require_once(__DIR__ . '/src/views/animal/create.php');
-    echo "Formulaire de création d'animal chargé.<br>";
-    exit;
-} elseif (preg_match('/^animal\/edit\/(\d+)$/', $url, $matches)) {
-    $animalController = new AnimalController($db->getPdo());
-    require_once(__DIR__ . '/src/views/animal/edit.php');
-    echo "Formulaire d'édition pour l'animal ID {$matches[1]} chargé.<br>";
-    exit;
-} elseif (preg_match('/^animal\/delete\/(\d+)$/', $url, $matches)) {
-    $animalController = new AnimalController($db->getPdo());
-    $animalController->delete($matches[1]);
-    echo "Animal avec ID {$matches[1]} supprimé.<br>";
     exit;
 }
 

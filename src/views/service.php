@@ -1,6 +1,6 @@
 <?php 
 require_once(__DIR__ . '/../../config/env.php');
-require_once(__DIR__.'/../models/Database.php'); // Inclure le modèle de base de données
+require_once (__DIR__.'../src/models/Database.php'); // Inclure le modèle de base de données
 
 $db = new Database(); // Instancier la classe Database
 $pdo = $db->getPdo(); // Obtenir l'instance PDO pour MariaDB
