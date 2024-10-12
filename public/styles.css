@@ -97,7 +97,7 @@ a {
   /* Affiche le menu */
 }
 
-/* Index */
+/* accueil */
 .css_index_messageOver,
 .resto1,
 .resto2 {
@@ -543,37 +543,107 @@ a {
     text-decoration: none;
   }
 
-  /*index.php*/
+  /*accueil*/
+
   .resto1,
   .resto2,
   .css_index_messageOver {
-    display: block;
+      display: block;
   }
-
+  
   .css_indexIntro {
-    max-width: 1000px;
-    margin: 0 auto;
-    /* Centre le conteneur */
+      max-width: 1000px;
+      margin: 0 auto; /* Centre le conteneur */
+  }
+  
+  .css_index_habitat {
+      display: flex; /* Utilise Flexbox pour aligner les éléments en ligne */
+      flex-direction: row; /* Aligne les éléments horizontalement */
+      justify-content: space-between; /* Distribue l'espace entre les images */
+      align-items: flex-start; /* Aligne les images en haut */
+      margin-top: 20px; /* Espace au-dessus des images */
+  }
+  
+  .css_index_habitatImg {
+      display: flex;
+      justify-content: space-between; /* Espace entre les images */
+      align-items: center; /* Centre les images verticalement */
+  }
+  
+  .css_index_img_habitat {
+      width: 30%; /* Uniformise la largeur des images */
+      height: 200px; /* Définit une hauteur fixe pour uniformiser les images */
+      border: 2px solid #ddd; /* Bordure autour de l'image */
+      object-fit: cover; /* Remplissage de l'image sans déformation */
+      position: relative; /* Pour positionner les titres */
+  }
+  
+  .css_index_h3 {
+      position: absolute;
+      top: 50%; /* Centré verticalement */
+      left: 50%; /* Centré horizontalement */
+      transform: translate(-50%, -50%);
+      margin: 0;
+      font-size: 1.5em;
+      color: #F0E9DF;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      pointer-events: none; /* Permet de cliquer sur l'image */
+  }
+  
+  .css_services_container {
+      display: flex;
+      flex-wrap: wrap; /* Permet aux images de se repositionner sur plusieurs lignes */
+      justify-content: space-around; /* Centre les images horizontalement */
+      margin-top: 20px; /* Espace au-dessus des services */
+  }
+  
+  .css_services {
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forme losange */
+      max-width: 250px; /* Largeur maximale des images pour l'alignement */
+      height: auto; /* Maintient les proportions */
+      margin: 10px; /* Ajoute un espace entre les images */
+      border: 2px solid #ddd; /* Bordure autour des images */
+  }
+  
+  .css_galerie img:hover {
+      filter: brightness(1.2) contrast(1.2);
+      border-color: #F0E9DF;
+  }
+  
+  .css_index_messageOver {
+      color: #F0E9DF;
+      font-weight: 300;
+      text-align: center;
+  }
+  
+  .css_index_habitatTitre {
+      display: flex;
+      justify-content: space-around; /* Espace entre les titres */
+      align-items: center; /* Centre les titres verticalement */
   }
 
-  .css_img_indexIntro {
+
+
+
+/* .css_img_indexIntro {
     float: right;
     /* Place l'image à droite du texte */
-    margin: 0 0 10px 10px;
+   /* margin: 0 0 10px 10px;
     /* Espace autour de l'image */
-    width: 150px;
+   /* width: 150px;
     /* Ajuste la taille de l'image pour qu'elle soit plus petite */
-    height: auto;
+   /* height: auto;
     /* Garde les proportions de l'image */
-    display: block;
+   /* display: block;
     /* Assure que l'image se comporte comme un bloc */
-    border: 2px solid #ddd;
+   /* border: 2px solid #ddd;
     /* Bordure légère autour de l'image */
-    -webkit-transform: rotate(0) scale(1);
+    /*-webkit-transform: rotate(0) scale(1);
     transform: rotate(0) scale(1);
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-  }
+  }*/
 
   .css_img_indexIntro:hover {
     -webkit-transform: rotate(10deg) scale(1.25);
@@ -581,53 +651,54 @@ a {
     transform: rotate(10deg) scale(1.25);
   }
 
-  .css_index_habitat {
+  /*.css_index_habitat {
     display: flex;
     /* Utilise Flexbox pour aligner les éléments en ligne */
-    flex-direction: row;
+    /*flex-direction: row;
     justify-content: space-between;
     /* Distribue l'espace entre les images */
-    align-items: flex-start;
+    /*align-items: flex-start;
     /* Aligne les images en haut */
-    flex-wrap: nowrap;
+    /*flex-wrap: nowrap;
     /* Empêche les images de se déplacer à la ligne suivante */
-    margin-top: 20px;
+    /*margin-top: 20px;
     /* Espace au-dessus des images */
-  }
+  /*}*/
 
-  .css_index_habitat_item {
+
+  /*.css_index_habitat_item {
     display: flex;
     flex-direction: column;
     /* Empile les éléments verticalement */
-    align-items: center;
+    /*align-items: center;
     /* Centre les éléments horizontalement */
-    margin: 0 10px;
+   /* margin: 0 10px;
     /* Ajoute de l'espace horizontal entre les items */
-    position: relative;
+    /*position: relative;
     /* Permet de positionner les éléments enfants par rapport à cet élément */
-  }
+  /*}*/
 
-  .css_index_h3 {
+  /*.css_index_h3 {
     margin-bottom: 10px;
     /* Espace entre le titre et l'image */
-    font-size: 1.5em;
+    /*font-size: 1.5em;
     /* Ajuste la taille du texte */
-    color: #F0E9DF;
+   /* color: #F0E9DF;
     /* Couleur du texte */
-    text-transform: uppercase;
+   /* text-transform: uppercase;
     /* Transforme le texte en majuscules */
-  }
+ /* }*/
 
-  .css_index_img_habitat {
+  /*.css_index_img_habitat {
     width: 100%;
     /* Assure que les images prennent toute la largeur de leur conteneur */
-    height: 200px;
+   /* height: 200px;
     /* Définit une hauteur fixe pour uniformiser les images */
-    border: 2px solid #ddd;
+   /* border: 2px solid #ddd;
     /* Bordure autour de l'image */
-    object-fit: cover;
+   /* object-fit: cover;
     /* Assure que l'image remplit bien son conteneur sans déformation */
-  }
+  /*}*/
 
   .flash:hover {
     opacity: 1;

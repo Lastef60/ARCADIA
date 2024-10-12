@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Script index
   Array.from(services).forEach(service => {
     service.addEventListener('click', () => {
-      window.location.href = 'services.php'
+      window.location.href = 'services.php' // Chemin mis à jour
     })
   })
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       index_P_Habitat.style.visibility = 'hidden'
     });
     habitat.addEventListener('click', () => {
-      window.location.href = 'habitats.php'
+      window.location.href = 'habitats.php' // Chemin mis à jour
     })
   })
 
@@ -57,19 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // événements pour les img des animaux
-    //parcours chaque animal
   animalImages.forEach(img => {
-    //au clic recuperation des infos de la bdd
     img.addEventListener('click', function () {
-      const animalName = this.dataset.animal //reprend l'animal qui a été cliqué
+      const animalName = this.dataset.animal // reprend l'animal qui a été cliqué
       toggleAnimalDescription(animalName) // fonction qui gère affichage de la description de l'animal
 
-      fetch('compteAnimal.php', {//envoi d'un requete
-        method: 'POST', // en methode post
+      fetch('compteAnimal.php', { // Envoi d'une requête
+        method: 'POST', // en méthode POST
         headers: {
-          'Content-Type': 'application/json' //requete contient un objet json
+          'Content-Type': 'application/json' // requête contient un objet JSON
         },
-        body: JSON.stringify({ nom: animalName }) //la clef = nom de l'animal
+        body: JSON.stringify({ nom: animalName }) // la clé = nom de l'animal
       })
       .then(response => response.json())
       .then(data => {
@@ -85,20 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  function toggleAnimalsDisplay(habitat) {//reprend id habitat pour affecter les animaux au bon habitat
+  function toggleAnimalsDisplay(habitat) { // reprend id habitat pour affecter les animaux au bon habitat
     const animals = document.querySelectorAll(`.js_habitat_animals[data-habitat="${habitat}"] .js_animal`)
     animals.forEach(animal => {
       animal.style.display = (animal.style.display === 'none' || animal.style.display === '') ? 'block' : 'none'
     })
 
-    //reprend les elements de la description de l'animal
+    // reprend les éléments de la description de l'animal
     const descriptions = document.querySelectorAll(`.js_habitat_animals[data-habitat="${habitat}"] .js_animal_description`)
     descriptions.forEach(description => {
       description.style.display = 'none'
     })
   }
 
-  function toggleAnimalDescription(animalName) {//fonction pour afficher ou nom la description
+  function toggleAnimalDescription(animalName) { // fonction pour afficher ou non la description
     document.querySelectorAll('.js_animal_description').forEach(description => {
       description.style.display = 'none'
     })
@@ -127,35 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
     diapos[currentIndex].classList.add('active')
     setInterval(showNextDiapo, delay)
   }
-  
+
   // Script administrateur (mise en place des liens de direction vers les autres pages)
   Array.from(lienimg).forEach(element => {
     element.addEventListener('click', () => {
-      window.location.href = 'upload.html'
-    })
-  })
-
-  Array.from(lienuser).forEach(element => {
-    element.addEventListener('click', () => {
-      window.location.href = 'compteUtilisateur.php'
+      window.location.href = 'avis/list.php' // Chemin mis à jour
     })
   })
 
   Array.from(lienservice).forEach(element => {
     element.addEventListener('click', () => {
-      window.location.href = 'compteService.php'
+      window.location.href = 'services.php' // Chemin mis à jour
     })
   })
 
   Array.from(lienhabitat).forEach(element => {
     element.addEventListener('click', () => {
-      window.location.href = 'compteHabitat.php'
+      window.location.href = 'habitat/list.php' // Chemin mis à jour
     })
   })
 
   Array.from(lienanimal).forEach(element => {
     element.addEventListener('click', () => {
-      window.location.href = 'compteAnimal.php'
+      window.location.href = 'animal/list.php' // Chemin mis à jour
     })
   })
 })
