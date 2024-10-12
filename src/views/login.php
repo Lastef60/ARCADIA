@@ -4,21 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <?php
+    session_start(); // Démarrer une session pour gérer les redirections
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once(__DIR__ . '/../controllers/UtilisateurController.php');
-        require_once(__DIR__ . '/../config/database.php'); // Fichier qui crée la connexion PDO
+        require_once(__DIR__ . '/../config/database.php'); // Inclure le fichier de connexion à la base de données
+        require_once(__DIR__ . '/../controllers/UtilisateurController.php'); // Inclure le contrôleur
 
-        $controller = new UtilisateurController($pdo);
-        $message = $controller->login($_POST['email'], $_POST['password']);
+        $controller = new UtilisateurController($pdo); // Instancier le contrôleur
+        $user = $controller->login($_POST['email'], $_POST['password']); // Tenter de connecter l'utilisateur
 
-        if ($message) {
-            echo "<p>$message</p>";
+        if ($user) {
+            // Redirection en fonction du rôle de l'utilisateur
+            if ($user['role'] === 'administrateur') {
+                header('Location: administrateur.php');
+                exit;
+            } elseif ($user['role'] === 'employe') {
+                header('Location: employe.php');
+                exit;
+            } elseif ($user['role'] === 'veterinaire') {
+                header('Location: veterinaire.php');
+                exit;
+            }
+        } else {
+            echo "<p>Connexion échouée. Vérifiez vos identifiants.</p>";
         }
     }
     ?>
+    
     <form method="post" action="">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -28,5 +44,8 @@
 
         <button type="submit">Connexion</button>
     </form>
+
+    <?php require_once(__DIR__ . '/../footer.php'); ?>
+    <script src="script.js"></script>
 </body>
 </html>
