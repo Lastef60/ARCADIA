@@ -47,53 +47,6 @@ a {
   text-decoration: none;
 }
 
-/*css pour mobile*/
-/* Styles pour les habitats - Version mobile */
-.css_index_habitatImg {
-  display: flex;
-  flex-direction: column; /* Aligne les images les unes en dessous des autres */
-  align-items: center; /* Centre les images horizontalement */
-}
-
-.css_index_habitatImg img {
-  width: 100%; /* Ajuste à la largeur de l'écran */
-  max-width: 400px; /* Limite la largeur max des images */
-  height: auto; /* Permet à la hauteur de s'ajuster automatiquement */
-  object-fit: cover; /* Assure que l'image couvre l'élément sans déformation */
-  border-radius: 5px; /* Arrondir les coins des images */
-}
-
-.css_index_habitatTitre h3 {
-  position: absolute; /* Positionne le titre par rapport à l'image */
-  top: 10px; /* Espace en haut de l'image */
-  left: 50%; /* Centre le titre horizontalement */
-  transform: translateX(-50%); /* Ajuste la position pour centrer */
-  color: white; /* Couleur du texte */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Ombre pour améliorer la lisibilité */
-}
-
-/* Styles pour les services - Version mobile */
-.css_services_container {
-  display: flex;
-  justify-content: center; /* Centre les images de services */
-  flex-wrap: wrap; /* Permet aux éléments de se déplacer sur plusieurs lignes */
-  gap: 15px; /* Espace entre les images */
-}
-
-.js_services {
-  width: 100%; /* Ajuste à la largeur de l'écran */
-  max-width: 100px; /* Limite la largeur max des images de service */
-  height: auto; /* Permet à la hauteur de s'ajuster automatiquement */
-  object-fit: cover; /* Assure que l'image couvre l'élément sans déformation */
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forme en losange */
-  border-radius: 5px; /* Arrondir les coins des images */
-}
-
-/* Suppression des images de restauration */
-.js_services:nth-child(2),
-.js_services:nth-child(3) {
-  display: none; /* Masque les 2 photos de resto */
-}
 
 /* Header */
 /* Menu par défaut caché sur mobile */
@@ -143,7 +96,9 @@ a {
   /* Affiche le menu */
 }
 
-/* accueil */
+/*page accueil*/
+
+
 
 
 /* Habitats */
@@ -469,46 +424,92 @@ a {
 
   /*accueil*/
 
-  /*photos habitats*/
-  .css_index_habitatImg {
-    display: flex;
-    justify-content: center; /* Centre les images horizontalement */
-    gap: 10px; /* Espace entre les images */
-  }
-  
-  .css_index_habitatImg img {
-    width: 200px; /* Taille fixe pour toutes les images */
-    height: 150px; /* Ajustez la hauteur selon vos besoins */
-    object-fit: cover; /* Assure que l'image couvre l'élément sans déformation */
-    border-radius: 5px; /* Arrondir les coins des images */
-  }
-  
-  .css_index_habitatTitre {
-    display: flex;
-    justify-content: center; /* Centre les titres horizontalement */
-    gap: 10px; /* Espace entre les titres */
-  }
-  
-  .css_index_habitatTitre h3 {
-    margin-top: 10px; /* Espace au-dessus des titres */
-  }
-  
-  /* photos services */
-  .css_services_container {
-    display: flex;
-    justify-content: center; /* Centre les images de services */
-    flex-wrap: wrap; /* Permet aux éléments de se déplacer sur plusieurs lignes */
-    gap: 15px; /* Espace entre les images */
-  }
-  
-  .js_services {
-    width: 100px; /* Taille fixe pour toutes les images de services */
-    height: 100px; /* Ajustez la hauteur selon vos besoins */
-    object-fit: cover; /* Assure que l'image couvre l'élément sans déformation */
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forme en losange */
-    border-radius: 5px; /* Arrondir les coins des images */
-  }
+ /* Classe css_indexIntro */
+ .css_indexIntro {
+  text-align: justify;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
+.css_img_indexIntro {
+  width: 20%; /* Réduction de la taille des images */
+  margin-left: 20px;
+  transition: transform 0.3s ease-in-out; /* Ajout d'une transition pour l'effet de survol */
+}
+
+/* Effet au survol des images */
+.css_img_indexIntro:hover {
+  transform: translateY(-5px); /* Déplace l'image vers le haut lorsqu'on la survole */
+}
+
+/* Classe css_index_habitatImg */
+.css_index_habitatImg {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.css_img.js_habitat {
+  width: 30%;
+  transition: filter 0.3s ease-in-out; /* Ajout d'une transition pour l'effet lumineux */
+}
+
+/* Effet lumineux au survol */
+.css_img.js_habitat:hover {
+  filter: brightness(1.2); /* Légèrement éclairer l'image au survol */
+}
+
+/* Affichage du paragraphe au survol des habitats */
+.css_img.js_habitat:hover + #js_commentaireHabitat {
+  display: block; /* Affiche le paragraphe lorsqu'on survole l'image */
+}
+
+/* Classe css_index_messageOver */
+#js_commentaireHabitat {
+  display: none; /* Masqué par défaut */
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Classe css_index_habitatTitre */
+.css_index_habitatTitre {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.css_index_h3 {
+  text-align: center;
+  margin-bottom: -10px; /* Pour rapprocher le titre de l'image */
+}
+
+/* Classe css_services_container */
+.css_services_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px; /* Espace entre les images */
+  margin-top: 20px;
+}
+
+.css_services_container .css_img {
+  width: calc(100% / 4 - 10px); /* Largeur des images pour qu'elles tiennent sur une ligne */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forme en losange */
+  border-radius: 5px; /* Arrondir les coins des images */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Effet au survol des images de service */
+.css_services_container .css_img:hover {
+  transform: scale(1.05); /* Légère mise à l'échelle au survol */
+}
+  
+ 
   /*habitats.php */
   .css_habitat_container {
     position: relative;

@@ -2,25 +2,17 @@
 
 // Charger les fichiers nécessaires
 require_once(__DIR__ . '/config/env.php');
-echo "Fichier env.php chargé.<br>";
 require_once(__DIR__ . '/src/models/Database.php');
-echo "Fichier Database.php chargé.<br>";
 require_once(__DIR__ . '/src/controllers/ServiceController.php');
-echo "ServiceController chargé.<br>";
 require_once(__DIR__ . '/src/controllers/HabitatController.php');
-echo "HabitatController chargé.<br>";
 require_once(__DIR__ . '/src/controllers/AnimalController.php');
-echo "AnimalController chargé.<br>";
 require_once(__DIR__ . '/src/controllers/AvisController.php');
-echo "AvisController chargé.<br>";
 
 // Créer une instance de la base de données
 $db = new Database();
-echo "Instance de Database créée.<br>";
 
 // Récupérer l'URL
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
-echo "URL récupérée: $url<br>";
 
 // Définir les routes pour la page d'accueil et les autres pages
 if ($url === '') {
@@ -33,25 +25,21 @@ if ($url === '') {
 
     // Charger la page d'accueil
     require_once(__DIR__ . '/src/views/accueil.php');
-    echo "Page d'accueil chargée.<br>";
     exit;
 } elseif ($url === 'services') {
     $serviceController = new ServiceController($db->getPdo());
     $services = $serviceController->list();
     require_once(__DIR__ . '/src/views/service.php');
-    echo "Liste des services chargée.<br>";
     exit;
 } elseif ($url === 'habitats') {
     $habitatController = new HabitatController($db->getPdo());
     $habitats = $habitatController->list();
     require_once(__DIR__ . '/src/views/habitat/list.php');
-    echo "Liste des habitats chargée.<br>";
     exit;
 } elseif (preg_match('/^habitat\/(\d+)$/', $url, $matches)) {
     $habitatController = new HabitatController($db->getPdo());
     $habitat = $habitatController->show($matches[1]);
     require_once(__DIR__ . '/src/views/habitat/show.php');
-    echo "Habitat avec ID {$matches[1]} chargé.<br>";
     exit;
 }
 
