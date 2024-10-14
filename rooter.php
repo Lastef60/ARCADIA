@@ -17,26 +17,14 @@ $habitatController = new HabitatController($pdo);
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Routes pour le site
-if ($uri === '/' || $uri === '/index') {
-    // Afficher la page d'accueil
-    $serviceController->list();
+if ($uri === '/' || $uri === '/index.php') {
+    require_once(__DIR__ . '/src/views/accueil.php');
 } elseif ($uri === '/habitats') {
-    // Afficher tous les habitats
     $habitatController->list();
 } elseif (preg_match('/^\/habitat\/(\d+)$/', $uri, $matches)) {
-    // Afficher un habitat spécifique en fonction de l'ID
     $habitatController->show($matches[1]);
-} elseif ($uri === '/habitat/create') {
-    // Créer un nouvel habitat
-    $habitatController->create();
-} elseif (preg_match('/^\/habitat\/edit\/(\d+)$/', $uri, $matches)) {
-    // Mettre à jour un habitat
-    $habitatController->edit($matches[1]);
-} elseif (preg_match('/^\/habitat\/delete\/(\d+)$/', $uri, $matches)) {
-    // Supprimer un habitat
-    $habitatController->delete($matches[1]);
 } else {
-    // Page non trouvée
     http_response_code(404);
     echo "404 - Page non trouvée";
 }
+

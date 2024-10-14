@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../../config/env.php');
-require_once(__DIR__ . '/../src/models/Database.php'); // Inclure le modèle de base de données
+require_once(__DIR__ . '/../models/Database.php'); // Inclure le modèle de base de données
 
 $db = new Database(); // Instancier la classe Database
 $pdo = $db->getPdo(); // Obtenir l'instance PDO pour MariaDB
@@ -17,7 +17,7 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nos services</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
   <?php endif; ?>
 
   <div class="service-container">
-    <img class="css_img" src="./uploads/img/service_petitTrain.jpg" alt="Petit Train" />
+    <img class="css_img" src="../../public/uploads/img/service_petitTrain.jpg" alt="Petit Train" />
     <p>Découvrez le zoo de manière ludique et confortable grâce à notre petit train!
       Ce service unique vous permet de faire le tour complet du parc sans effort tout en profitant
       de commentaires éducatifs sur les différentes espèces et leurs habitats. Idéal pour les familles
@@ -45,7 +45,7 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
   </div>
 
   <div class="service-container">
-    <img class="css_img" src="./uploads/img/service_visiteGuidee.jpg" alt="Visite Guidée" />
+    <img class="css_img" src="../../public/uploads/img/service_visiteGuidee.jpg" alt="Visite Guidée" />
     <p>Vivez une expérience unique et éducative en participant à notre visite guidée gratuite, animée par un soigneur passionné.
       Notre zoo abrite trois habitats distincts, chacun recréant fidèlement les environnements naturels des animaux qui y résident.
       Lors de cette visite, vous découvrirez l'habitat des savanes, des forêts tropicales et des zones humides.
@@ -55,7 +55,7 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
   </div>
 
   <div class="service-container">
-    <img class="css_img" src="./uploads/img/service_resto2.jpg" alt="Restaurant" />
+    <img class="css_img" src="../../public/uploads/img/service_resto2.jpg" alt="Restaurant" />
     <p>Faites une pause gourmande lors de votre visite au zoo en vous arrêtant dans l'un de nos restaurants. 
       Nous proposons une variété de cuisines pour satisfaire tous les goûts, allant des plats traditionnels 
       aux options végétariennes et véganes. Chaque restaurant est stratégiquement situé pour offrir 

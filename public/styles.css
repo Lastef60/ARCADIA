@@ -97,8 +97,93 @@ a {
 }
 
 /*page accueil*/
+/* Style pour la classe css_indexIntro */
+.css_indexIntro {
+  text-align: justify; /* Justifie le texte */
+  width: 100%; /* Prend toute la largeur de l'écran */
+  padding: 10px; /* Ajoute un peu de padding pour respirer */
+  box-sizing: border-box; /* Pour inclure le padding dans la largeur */
+}
 
+/* Style pour les images de la classe css_img_indexIntro */
+.css_img_indexIntro {
+  display: block;
+  margin: 0 auto; /* Centre l'image horizontalement */
+  width: 90%; /* Ajuste la taille à 90% de la largeur de l'écran */
+  max-width: 300px; /* Limite la largeur maximale de l'image */
+  height: auto; /* Garde les proportions de l'image */
+}
 
+/* Style pour les images d'habitats (classe css_index_habitatImg) */
+.css_index_habitatImg {
+  display: flex;
+  flex-direction: column; /* Aligne les images l'une sous l'autre */
+  align-items: center; /* Centre les images */
+  margin-top: 20px; /* Ajoute un espace en haut des images */
+}
+
+/* Style pour les titres des habitats */
+.css_index_habitatTitre h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: white; /* Couleur du texte pour contraster avec l'image */
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  padding: 5px;
+  border-radius: 5px;
+  width: fit-content;
+  position: relative; /* Nécessaire si on veut positionner le titre par rapport à l'image */
+}
+
+/* Pour placer les titres sur les images */
+.css_index_habitatImg img {
+  width: 90%; /* Ajuste la taille des images */
+  max-width: 300px; /* Largeur maximale */
+  margin-bottom: 15px;
+  position: relative; /* Nécessaire pour superposer le texte */
+}
+
+.css_index_habitatTitre h3 {
+  position: absolute;
+  bottom: 10px; /* Positionne le titre en bas de l'image */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Assure que le texte reste au-dessus de l'image */
+}
+
+/* Style pour les images de services */
+.css_services_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les images */
+  margin-top: 20px; /* Espace au-dessus des images */
+}
+
+.css_services_container img {
+  width: 45%; /* Réduit la taille des images */
+  max-width: 200px; /* Largeur maximale */
+  height: auto; /* Garde les proportions de l'image */
+  margin: 10px 0; /* Espace entre les images */
+}
+
+.css_services_container img:nth-child(2),
+.css_services_container img:nth-child(3) {
+  display: none; /* Cache les images service_resto1 et service_resto2 */
+}
+
+/* Pour positionner les images de manière élégante */
+.css_services_container img:nth-child(1) {
+  margin-right: 5%; /* Espace entre la première et la deuxième image */
+}
+
+.css_services_container img:nth-child(4) {
+  margin-left: 5%; /* Espace entre la première et la deuxième image */
+}
+
+.css_services_container img:nth-child(5) {
+  display: block;
+  margin: 20px auto; /* Centre la troisième image en dessous */
+}
 
 
 /* Habitats */
