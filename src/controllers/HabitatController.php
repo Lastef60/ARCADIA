@@ -17,6 +17,8 @@ class HabitatController
     public function list()
     {
         $habitats = $this->habitatModel->getAll(); // Obtenir tous les habitats
+        
+        // S'assurer que la variable est passée à la vue
         require_once(__DIR__ . '/../views/habitat/list.php'); // Charger la vue pour afficher les habitats
     }
 
@@ -36,6 +38,7 @@ class HabitatController
             $commentaire = $_POST['commentaire_habitat'];
             $this->habitatModel->create($nom, $description, $commentaire);
             header('Location: /habitats'); // Rediriger après création
+            exit;
         } else {
             require_once(__DIR__ . '/../views/habitat/create.php'); // Charger la vue pour créer un habitat
         }
@@ -50,6 +53,7 @@ class HabitatController
             $commentaire = $_POST['commentaire_habitat'];
             $this->habitatModel->update($id, $nom, $description, $commentaire);
             header('Location: /habitats'); // Rediriger après mise à jour
+            exit;
         } else {
             $habitat = $this->habitatModel->getById($id);
             require_once(__DIR__ . '/../views/habitat/edit.php'); // Charger la vue pour éditer un habitat
@@ -69,6 +73,7 @@ class HabitatController
     {
         $this->habitatModel->delete($id);
         header('Location: /habitats'); // Rediriger après suppression
+        exit;
     }
 
     // Méthode pour mettre à jour un commentaire d'un habitat
@@ -80,6 +85,7 @@ class HabitatController
 
             $this->habitatModel->updateComment($habitatId, $commentaire);
             header('Location: /employe.php'); // Rediriger après mise à jour
+            exit;
         } else {
             echo "<p>Requête invalide. Veuillez soumettre le formulaire avec les informations nécessaires.</p>";
         }

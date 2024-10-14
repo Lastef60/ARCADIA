@@ -6,7 +6,7 @@
   <nav class="css_header_div_nav js_header_div_nav">
     <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/accueil.php">Accueil</a>
     <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/habitat/list.php">Les habitats et leurs animaux</a>
-    <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/services.php">Nos services</a>
+    <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/service.php">Nos services</a>
     <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/avis/list.php">Votre avis nous intéresse</a>
     <a class="css_header_div_nav_a" href="<?php echo $baseUrl; ?>/login.php">Connexion</a>
   </nav>

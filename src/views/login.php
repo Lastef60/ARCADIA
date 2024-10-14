@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../../public/css/styles.css"> <!-- Chemin mis à jour -->
+    <link rel="stylesheet" href="<?php echo $baseUrl; ?>/public/css/styles.css"> 
 </head>
 <body>
     <form method="post" action="">
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Connexion</button>
     </form>
 
-    <?php require_once(__DIR__ . '/../footer.php'); ?>
-    <script src="../../public/js/script.js"></script> <!-- Chemin mis à jour -->
+    <?php require_once(__DIR__ . '/../../footer.php'); ?> 
+    <script src="../../public/js/script.js"></script> 
 </body>
 </html>

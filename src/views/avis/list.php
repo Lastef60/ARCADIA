@@ -1,5 +1,13 @@
 <?php
-require_once(__DIR__ . '/../config/env.php');
+$configPath = __DIR__ . '/../../../config/env.php';
+
+if (file_exists($configPath)) {
+  require_once($configPath);
+} else {
+  die('Le fichier de configuration est introuvable.');
+}
+
+
 require_once(__DIR__ . '/../controllers/AvisController.php');
 
 $db = new Database(); // Instancier la classe Database
