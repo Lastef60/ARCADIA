@@ -1,24 +1,33 @@
 <?php
 
 require_once(__DIR__ . '/../models/Habitat.php');
+require_once(__DIR__ . '/../models/Animal.php'); // Inclure le modèle Animal
 require_once(__DIR__ . '/../models/Database.php');
 
 class HabitatController
 {
     private $habitatModel;
+    private $animalModel; // Ajouter une propriété pour le modèle Animal
 
     // Injecter la connexion PDO dans le constructeur
     public function __construct($pdo)
     {
         $this->habitatModel = new Habitat($pdo);
+        $this->animalModel = new Animal($pdo); // Initialiser le modèle Animal
     }
 
-    // Afficher tous les habitats
+    // Afficher tous les habitats et les animaux associés
     public function list()
     {
         $habitats = $this->habitatModel->getAll(); // Obtenir tous les habitats
         
-        // S'assurer que la variable est passée à la vue
+        // Récupérer les animaux pour chaque habitat
+        $animalsByHabitat = [];
+        foreach ($habitats as $habitat) {
+            $animalsByHabitat[$habitat['habitat_id']] = $this->animalModel->getAnimalsByHabitat($habitat['habitat_id']);
+        }
+
+        // Passer les habitats et les animaux à la vue
         require_once(__DIR__ . '/../views/habitat/list.php'); // Charger la vue pour afficher les habitats
     }
 
@@ -26,6 +35,7 @@ class HabitatController
     public function show($id)
     {
         $habitat = $this->habitatModel->getById($id);
+        $animals = $this->animalModel->getAnimalsByHabitat($id); // Récupérer les animaux de l'habitat
         require_once(__DIR__ . '/../views/habitat/show.php'); // Vue des détails d'un habitat
     }
 
@@ -58,14 +68,6 @@ class HabitatController
             $habitat = $this->habitatModel->getById($id);
             require_once(__DIR__ . '/../views/habitat/edit.php'); // Charger la vue pour éditer un habitat
         }
-    }
-
-    // Méthode pour éditer un habitat
-    public function edit($id)
-    {
-        // Afficher le formulaire d'édition d'un habitat
-        $habitat = $this->habitatModel->getById($id);
-        require_once(__DIR__ . '/../views/habitat/edit.php');
     }
 
     // Supprimer un habitat

@@ -17,7 +17,7 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nos services</title>
-  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/styles.css">
 </head>
 
 <body>
@@ -63,6 +63,17 @@ $services = $controller->list(); // Appeler la méthode pour lister les services
       Nos chefs mettent un point d'honneur à utiliser des ingrédients frais et locaux pour vous garantir 
       une alimentation saine et savoureuse. Profitez d'un moment de détente et de plaisir culinaire au cœur de la nature!</p>
   </div>
+
+  <h2>Horaires</h2>
+    <?php if (!empty($horaires)): ?>
+        <?php foreach ($horaires as $horaire): ?>
+            <p><?php echo htmlspecialchars($horaire['jour']) . ': ' . htmlspecialchars($horaire['ouverture']) . ' - ' . htmlspecialchars($horaire['fermeture']); ?></p>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucun horaire disponible.</p>
+    <?php endif; ?>
+
+    <?php require_once(__DIR__ . '/footer.php'); ?>
 
 </body>
 

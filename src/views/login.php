@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once(__DIR__ . '/../../config/env.php'); // Inclure le fichier de connexion à la base de données
     require_once(__DIR__ . '/../controllers/UtilisateurController.php'); // Inclure le contrôleur
 
+
     $db = new Database(); // Instancier la classe Database
     $pdo = $db->getPdo(); // Obtenir l'instance PDO
     $controller = new UtilisateurController($pdo); // Instancier le contrôleur
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Connexion</button>
     </form>
 
-    <?php require_once(__DIR__ . '/../../footer.php'); ?> 
+    <?php require_once(__DIR__ . '/footer.php'); ?>
     <script src="../../public/js/script.js"></script> 
 </body>
 </html>
