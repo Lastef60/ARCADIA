@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../public/styles.css">
 </head>
 <body>
     <?php require_once(__DIR__ . '/../views/header.php'); ?> 
@@ -19,6 +19,6 @@
         </form>
     </div>
     <?php require_once(__DIR__ . '/../views/footer.php'); ?> 
-    <script src="../script.js"></script> 
+    <script src="../public/script.js"></script> 
 </body>
 </html>

@@ -1,95 +1,116 @@
 <?php
 
 require_once(__DIR__ . '/../models/Habitat.php');
-require_once(__DIR__ . '/../models/Animal.php'); // Inclure le modèle Animal
-require_once(__DIR__ . '/../models/Database.php');
+require_once(__DIR__ . '/../models/Animal.php');
+require_once(__DIR__ . '/../models/Database.php'); // Si tu as un fichier pour la connexion PDO
 
 class HabitatController
 {
-    private $habitatModel;
-    private $animalModel; // Ajouter une propriété pour le modèle Animal
+  private $habitatModel;
+  private $animalModel;
 
-    // Injecter la connexion PDO dans le constructeur
-    public function __construct($pdo)
-    {
-        $this->habitatModel = new Habitat($pdo);
-        $this->animalModel = new Animal($pdo); // Initialiser le modèle Animal
+  public function __construct()
+  {
+    // Initialiser PDO
+    $pdo = (new Database())->getPdo(); // Assure-toi que cette méthode existe dans ta classe Database
+
+    // Passer PDO au modèle Habitat
+    $this->habitatModel = new Habitat($pdo);
+    $this->animalModel = new Animal($pdo); // Assure-toi que Animal aussi reçoit PDO si nécessaire
+  }
+  public function list()
+  {
+    // Récupérer tous les habitats
+    $habitats = $this->habitatModel->getAll();
+
+    // Débogage pour vérifier les données récupérées (à commenter ou supprimer en production)
+    var_dump($habitats);
+    exit;
+
+    $animalsByHabitat = [];
+    foreach ($habitats as $habitat) {
+      $animalsByHabitat[$habitat['habitat_id']] = $this->animalModel->getAnimalsByHabitat($habitat['habitat_id']);
     }
 
-    // Afficher tous les habitats et les animaux associés
-    public function list()
-    {
-        $habitats = $this->habitatModel->getAll(); // Obtenir tous les habitats
-        
-        // Récupérer les animaux pour chaque habitat
-        $animalsByHabitat = [];
-        foreach ($habitats as $habitat) {
-            $animalsByHabitat[$habitat['habitat_id']] = $this->animalModel->getAnimalsByHabitat($habitat['habitat_id']);
-        }
+    // Passer les habitats et les animaux associés à la vue
+    require_once(__DIR__ . '/../views/habitat/list.php');
+  }
 
-        // Passer les habitats et les animaux à la vue
-        require_once(__DIR__ . '/../views/habitat/list.php'); // Charger la vue pour afficher les habitats
+  public function show($id)
+  {
+    // Récupérer un habitat spécifique en fonction de son ID
+    $habitat = $this->habitatModel->getById($id);
+    if (!$habitat) {
+      // Redirection ou message d'erreur si l'habitat n'existe pas
+      echo "L'habitat demandé n'existe pas.";
+      return;
     }
 
-    // Afficher les détails d'un habitat et ses animaux
-    public function show($id)
-    {
-        $habitat = $this->habitatModel->getById($id);
-        $animals = $this->animalModel->getAnimalsByHabitat($id); // Récupérer les animaux de l'habitat
-        require_once(__DIR__ . '/../views/habitat/show.php'); // Vue des détails d'un habitat
+    // Récupérer les animaux de cet habitat
+    $animals = $this->animalModel->getAnimalsByHabitat($id);
+
+    // Passer l'habitat et ses animaux associés à la vue
+    require_once(__DIR__ . '/../views/habitat/show.php');
+  }
+
+  // Méthode pour créer un habitat (exemple basique)
+  public function create()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $nom = $_POST['nom'];
+      $description = $_POST['description'];
+      $commentaire_habitat = $_POST['commentaire_habitat'];
+
+      // Appel du modèle pour ajouter un nouvel habitat
+      $this->habitatModel->create($nom, $description, $commentaire_habitat);
+
+      // Redirection après la création
+      header('Location: /habitat/list');
+      exit;
+    } else {
+      require_once(__DIR__ . '/../views/habitat/create.php');
+    }
+  }
+
+  // Méthode pour éditer un habitat
+  public function edit($id)
+  {
+    $habitat = $this->habitatModel->getById($id);
+    if (!$habitat) {
+      echo "L'habitat demandé n'existe pas.";
+      return;
     }
 
-    // Créer un nouvel habitat
-    public function create()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nom = $_POST['nom'];
-            $description = $_POST['description'];
-            $commentaire = $_POST['commentaire_habitat'];
-            $this->habitatModel->create($nom, $description, $commentaire);
-            header('Location: /habitats'); // Rediriger après création
-            exit;
-        } else {
-            require_once(__DIR__ . '/../views/habitat/create.php'); // Charger la vue pour créer un habitat
-        }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $nom = $_POST['nom'];
+      $description = $_POST['description'];
+      $commentaire_habitat = $_POST['commentaire_habitat'];
+
+      // Mettre à jour l'habitat dans la base de données
+      $this->habitatModel->update($id, $nom, $description, $commentaire_habitat);
+
+      // Redirection après la mise à jour
+      header('Location: /habitat/list');
+      exit;
+    } else {
+      require_once(__DIR__ . '/../views/habitat/edit.php');
+    }
+  }
+
+  // Méthode pour supprimer un habitat
+  public function delete($id)
+  {
+    $habitat = $this->habitatModel->getById($id);
+    if (!$habitat) {
+      echo "L'habitat demandé n'existe pas.";
+      return;
     }
 
-    // Mettre à jour un habitat
-    public function update($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nom = $_POST['nom'];
-            $description = $_POST['description'];
-            $commentaire = $_POST['commentaire_habitat'];
-            $this->habitatModel->update($id, $nom, $description, $commentaire);
-            header('Location: /habitats'); // Rediriger après mise à jour
-            exit;
-        } else {
-            $habitat = $this->habitatModel->getById($id);
-            require_once(__DIR__ . '/../views/habitat/edit.php'); // Charger la vue pour éditer un habitat
-        }
-    }
+    // Appel du modèle pour supprimer l'habitat
+    $this->habitatModel->delete($id);
 
-    // Supprimer un habitat
-    public function delete($id)
-    {
-        $this->habitatModel->delete($id);
-        header('Location: /habitats'); // Rediriger après suppression
-        exit;
-    }
-
-    // Méthode pour mettre à jour un commentaire d'un habitat
-    public function updateComment()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['habitat_id'])) {
-            $habitatId = $_POST['habitat_id'];
-            $commentaire = $_POST['commentaire_habitat'];
-
-            $this->habitatModel->updateComment($habitatId, $commentaire);
-            header('Location: /employe.php'); // Rediriger après mise à jour
-            exit;
-        } else {
-            echo "<p>Requête invalide. Veuillez soumettre le formulaire avec les informations nécessaires.</p>";
-        }
-    }
+    // Redirection après la suppression
+    header('Location: /habitat/list');
+    exit;
+  }
 }

@@ -7,7 +7,8 @@ if (file_exists($configPath)) {
   die('Le fichier de configuration est introuvable.');
 }
 
-require_once(__DIR__ . '../../../controllers/AvisController.php');
+require_once(__DIR__ .'/../../models/Database.php');
+require_once(__DIR__.'/../../controllers/AvisController.php');
 
 $db = new Database(); // Instancier la classe Database
 $pdo = $db->getPdo(); // Obtenir l'instance PDO

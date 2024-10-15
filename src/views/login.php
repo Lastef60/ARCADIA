@@ -35,9 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="<?php echo $baseUrl; ?>/public/css/styles.css"> 
+    <link rel="stylesheet" href="../../public/styles.css">
 </head>
 <body>
+  <?php require_once(__DIR__ . '/header.php'); ?>
     <form method="post" action="">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>

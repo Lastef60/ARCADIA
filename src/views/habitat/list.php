@@ -1,5 +1,5 @@
 <?php
-// Assurez-vous que la variable $habitats est définie et contient des données
+// Vérification que la variable $habitats est définie et contient des données
 if (empty($habitats)) {
   echo "<p>Aucun habitat disponible.</p>";
 } else {
@@ -19,13 +19,14 @@ if (empty($habitats)) {
       </p>
 
       <div class="js_habitat_animals" data-habitat="<?= $habitat['habitat_id'] ?>">
-        <?php if (isset($animalsByHabitat[$habitat['habitat_id']])): ?>
-          <?php foreach ($animalsByHabitat[$habitat['habitat_id']] as $animal): ?>
-            <?php
+        <?php
+        // Vérifier si des animaux sont disponibles pour cet habitat
+        if (isset($animalsByHabitat[$habitat['habitat_id']]) && !empty($animalsByHabitat[$habitat['habitat_id']])):
+          foreach ($animalsByHabitat[$habitat['habitat_id']] as $animal):
             $animalName = strtolower($animal['prenom']);
             $fileExtension = ($animalName === 'aslan') ? 'png' : 'jpg';
             $animalImage = "/public/uploads/img/{$habitatName}_{$animalName}.{$fileExtension}";
-            ?>
+        ?>
             <div class="animal-item">
               <img class="js_animal css_img" src="<?= $animalImage ?>"
                 data-animal="<?= htmlspecialchars($animal['prenom']) ?>"
@@ -47,3 +48,4 @@ if (empty($habitats)) {
 <?php
   endforeach;
 }
+?>
