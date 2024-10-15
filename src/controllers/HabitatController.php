@@ -2,7 +2,8 @@
 
 require_once(__DIR__ . '/../models/Habitat.php');
 require_once(__DIR__ . '/../models/Animal.php');
-require_once(__DIR__ . '/../models/Database.php'); // Si tu as un fichier pour la connexion PDO
+require_once(__DIR__ . '/../models/Database.php'); 
+
 
 class HabitatController
 {
@@ -12,18 +13,18 @@ class HabitatController
   public function __construct()
   {
     // Initialiser PDO
-    $pdo = (new Database())->getPdo(); // Assure-toi que cette méthode existe dans ta classe Database
+    $pdo = (new Database())->getPdo(); 
 
     // Passer PDO au modèle Habitat
     $this->habitatModel = new Habitat($pdo);
-    $this->animalModel = new Animal($pdo); // Assure-toi que Animal aussi reçoit PDO si nécessaire
+    $this->animalModel = new Animal($pdo); 
   }
   public function list()
   {
     // Récupérer tous les habitats
     $habitats = $this->habitatModel->getAll();
 
-    // Débogage pour vérifier les données récupérées (à commenter ou supprimer en production)
+    // Débogage pour vérifier les données récupérées
     var_dump($habitats);
     exit;
 
@@ -33,7 +34,7 @@ class HabitatController
     }
 
     // Passer les habitats et les animaux associés à la vue
-    require_once(__DIR__ . '/../views/habitat/list.php');
+     require_once(__DIR__.'/../views/habitat/list.php');
   }
 
   public function show($id)
@@ -50,7 +51,7 @@ class HabitatController
     $animals = $this->animalModel->getAnimalsByHabitat($id);
 
     // Passer l'habitat et ses animaux associés à la vue
-    require_once(__DIR__ . '/../views/habitat/show.php');
+    require_once(__DIR__ .'/../views/habitat/show.php');
   }
 
   // Méthode pour créer un habitat (exemple basique)
@@ -68,7 +69,7 @@ class HabitatController
       header('Location: /habitat/list');
       exit;
     } else {
-      require_once(__DIR__ . '/../views/habitat/create.php');
+      require_once(__DIR__ .'/../views/habitat/create.php');
     }
   }
 

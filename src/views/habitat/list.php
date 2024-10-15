@@ -48,4 +48,3 @@ if (empty($habitats)) {
 <?php
   endforeach;
 }
-?>
