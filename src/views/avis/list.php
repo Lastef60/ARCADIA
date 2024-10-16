@@ -1,57 +1,55 @@
 <?php
-$configPath = __DIR__ . '/../../../config/env.php';
-
-if (file_exists($configPath)) {
-  require_once($configPath);
-} else {
-  die('Le fichier de configuration est introuvable.');
+// Vérifie si la variable $habitats est définie et son contenu
+if (isset($habitats)) {
+  var_dump($habitats); // Affiche le contenu de $habitats pour le débogage
 }
 
-require_once(__DIR__ .'/../../models/Database.php');
-require_once(__DIR__.'/../../controllers/AvisController.php');
-
-$db = new Database(); // Instancier la classe Database
-$pdo = $db->getPdo(); // Obtenir l'instance PDO
-$avisController = new AvisController($pdo); // Assurez-vous que $pdo est votre connexion à la base de données
-$avisList = $avisController->list();
+// Vérification que la variable $habitats est définie et contient des données
+if (empty($habitats)) {
+  echo "<p>Aucun habitat disponible.</p>";
+} else {
+  foreach ($habitats as $habitat):
+    // Récupérer le nom et l'image de l'habitat
+    $habitatName = isset($habitat['nom']) ? $habitat['nom'] : 'inconnu';
+    $habitatImage = "/public/uploads/img/{$habitatName}_habitat.jpg";
 ?>
+    <div class="habitat-item">
+      <img class="css_img_habitats js_habitat_img" id="js_img_<?= htmlspecialchars($habitatName) ?>habitat"
+        src="<?= $habitatImage ?>" alt="habitat <?= htmlspecialchars($habitatName) ?>"
+        data-habitat="<?= $habitat['habitat_id'] ?>">
 
-<!DOCTYPE html>
-<html lang="fr">
+      <p id="js_descript_<?= htmlspecialchars($habitatName) ?>habitat">
+        <?= strtoupper(htmlspecialchars($habitatName)) ?> :
+        <?= htmlspecialchars($habitat['description']) . "<br>" . htmlspecialchars($habitat['commentaire_habitat']); ?>
+      </p>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liste des Avis</title>
-  <link rel="stylesheet" href="<?php echo $baseUrl; ?>/styles.css">
-</head>
-
-<body>
-  <?php require_once(__DIR__ . '/../header.php'); ?>
-
-  <h2>Liste des Avis</h2>
-  <table>
-    <tr>
-      <th>Pseudo</th>
-      <th>Message</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-    <?php foreach ($avisList as $avis) : ?>
-      <tr>
-        <td><?php echo htmlspecialchars($avis['pseudo']); ?></td>
-        <td><?php echo htmlspecialchars($avis['message']); ?></td>
-        <td><?php echo htmlspecialchars($avis['date_publication']); ?></td>
-        <td>
-          <a href="<?php echo $baseUrl; ?>/avis/update.php?id=<?php echo $avis['avis_id']; ?>">Modifier</a>
-          <a href="<?php echo $baseUrl; ?>/avis/delete.php?id=<?php echo $avis['avis_id']; ?>">Supprimer</a>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </table>
-
-  <?php require_once(__DIR__ . '/../footer.php'); ?>
-  <script src="<?php echo $baseUrl; ?>/script.js"></script>
-</body>
-
-</html>
+      <div class="js_habitat_animals" data-habitat="<?= $habitat['habitat_id'] ?>">
+        <?php
+        // Vérifier si des animaux sont disponibles pour cet habitat
+        if (isset($animalsByHabitat[$habitat['habitat_id']]) && !empty($animalsByHabitat[$habitat['habitat_id']])):
+          foreach ($animalsByHabitat[$habitat['habitat_id']] as $animal):
+            $animalName = strtolower($animal['prenom']);
+            $fileExtension = ($animalName === 'aslan') ? 'png' : 'jpg';
+            $animalImage = "/public/uploads/img/{$habitatName}_{$animalName}.{$fileExtension}";
+        ?>
+            <div class="animal-item">
+              <img class="js_animal css_img" src="<?= $animalImage ?>"
+                data-animal="<?= htmlspecialchars($animal['prenom']) ?>"
+                alt="<?= htmlspecialchars($animal['prenom']) ?>">
+              <div class="js_animal_description" data-animal="<?= htmlspecialchars($animal['prenom']) ?>">
+                <?php foreach ($animal as $key => $value): ?>
+                  <?php if ($key !== 'animal_id' && $key !== 'habitat_id'): ?>
+                    <p><?= htmlspecialchars(ucfirst(str_replace('_', ' ', $key))) ?>: <?= htmlspecialchars($value) ?></p>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>Aucun animal disponible dans cet habitat.</p>
+        <?php endif; ?>
+      </div>
+    </div>
+<?php
+  endforeach;
+}

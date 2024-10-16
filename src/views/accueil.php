@@ -14,7 +14,7 @@
   <p>
     Bienvenue au Zoo Arcadia, un véritable joyau écologique niché en Bretagne, au cœur de la légendaire
     forêt de Brocéliande, un lieu empreint de mystère et de magie.
-    <img class="css_img_indexIntro" src="./uploads/img/jungle_tictac.jpg" alt="Jungle Tictac"/>
+    <img class="css_img_indexIntro" src="../../public/uploads/img/jungle_tictac.jpg" alt="Jungle Tictac"/>
     Depuis sa création en 1960, le Zoo Arcadia, sous la direction passionnée et visionnaire de José,
     s'est engagé avec détermination dans la préservation des espèces menacées et la protection précieuse
     de la biodiversité. Nous avons à cœur de faire de notre zoo un sanctuaire où la faune trouve refuge
@@ -27,7 +27,7 @@
     végétation dense abritent une faune vibrante et diversifiée. Ensuite, découvrez la savane étendue,
     un espace ouvert et ensoleillé qui reflète la grandeur des plaines africaines, avec ses habitants
     emblématiques comme les lions et les girafes.
-    <img class="css_img_indexIntro" src="./uploads/img/jungle_hope.jpg" alt="Jungle Hope"/>
+    <img class="css_img_indexIntro" src="../../public/uploads/img/jungle_hope.jpg" alt="Jungle Hope"/>
     Enfin, laissez-vous envoûter par le marais mystérieux, un écosystème aquatique qui regorge de vie
     et de couleurs, offrant un aperçu fascinant de la faune des zones humides.
   </p>
@@ -35,7 +35,7 @@
     Mais le Zoo Arcadia n'est pas seulement un lieu de découverte et d'émerveillement. Nous nous engageons
     également à jouer un rôle essentiel dans la conservation de la faune. Notre mission est de sensibiliser
     et d'éduquer les visiteurs de tous âges sur l'importance cruciale de protéger notre planète et ses habitants.
-    <img class="css_img_indexIntro" src="./uploads/img/marais_bisco.jpg" alt="Marais Bisco"/>
+    <img class="css_img_indexIntro" src="../../public/uploads/img/marais_bisco.jpg" alt="Marais Bisco"/>
     À travers nos programmes éducatifs, nos expositions interactives et nos initiatives de conservation,
     nous cherchons à inspirer une prise de conscience et une action en faveur de la sauvegarde des espèces
     et des habitats naturels. Venez nous rendre visite et plongez dans un univers où chaque moment est une
