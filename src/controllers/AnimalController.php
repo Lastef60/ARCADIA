@@ -28,19 +28,20 @@ class AnimalController
   public function create()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Assure-toi que tous les champs nécessaires sont bien définis
       $data = [
-        'prenom' => $_POST['prenom'],
-        'etat' => $_POST['etat'],
-        'genre' => $_POST['genre'],
-        'age' => $_POST['age'],
-        'race_id' => $_POST['race_id'],
-        'habitat_id' => $_POST['habitat_id']
+        'prenom' => $_POST['prenom'] ?? '',
+        'etat' => $_POST['etat'] ?? '',
+        'genre' => $_POST['genre'] ?? '',
+        'age' => $_POST['age'] ?? 0,
+        'race_id' => $_POST['race_id'] ?? null,
+        'habitat_id' => $_POST['habitat_id'] ?? null
       ];
 
       if ($this->animalModel->createAnimal($data)) {
         header('Location: index.php?controller=animal&action=list');
+        exit;
       } else {
-        // Handle error (e.g., set a flash message)
         echo "Error creating animal.";
       }
     } else {
@@ -53,18 +54,18 @@ class AnimalController
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $data = [
-        'prenom' => $_POST['prenom'],
-        'etat' => $_POST['etat'],
-        'genre' => $_POST['genre'],
-        'age' => $_POST['age'],
-        'race_id' => $_POST['race_id'],
-        'habitat_id' => $_POST['habitat_id']
+        'prenom' => $_POST['prenom'] ?? '',
+        'etat' => $_POST['etat'] ?? '',
+        'genre' => $_POST['genre'] ?? '',
+        'age' => $_POST['age'] ?? 0,
+        'race_id' => $_POST['race_id'] ?? null,
+        'habitat_id' => $_POST['habitat_id'] ?? null
       ];
 
       if ($this->animalModel->updateAnimal($animal_id, $data)) {
         header('Location: index.php?controller=animal&action=list');
+        exit;
       } else {
-        // Handle error (e.g., set a flash message)
         echo "Error updating animal.";
       }
     } else {
@@ -78,8 +79,8 @@ class AnimalController
   {
     if ($this->animalModel->deleteAnimal($animal_id)) {
       header('Location: index.php?controller=animal&action=list');
+      exit;
     } else {
-      // Handle error (e.g., set a flash message)
       echo "Error deleting animal.";
     }
   }
