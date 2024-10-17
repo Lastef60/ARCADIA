@@ -25,7 +25,11 @@ class HabitatController
     $habitats = $this->habitatModel->getAll();
 
     // Déboguer le contenu des habitats
-    var_dump($habitats); // Ajoute cette ligne pour voir ce qui est retourné
+    if (empty($habitats)) {
+      echo "Aucun habitat récupéré depuis la base de données.";
+    } else {
+      var_dump($habitats); // Voir le contenu exact
+    }
 
     // Récupérer les animaux par habitat
     $animalsByHabitat = [];

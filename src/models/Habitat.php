@@ -14,12 +14,24 @@ class Habitat
   {
     try {
       $stmt = $this->pdo->query('SELECT * FROM habitat');
-      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      // Afficher un message de débogage pour vérifier le résultat
+      if (empty($results)) {
+        echo "Aucune donnée trouvée dans la table habitat.";
+      } else {
+        echo "Données récupérées avec succès.";
+        var_dump($results); // Afficher le contenu exact pour confirmation
+      }
+
+      return $results;
     } catch (PDOException $e) {
       error_log("Get All Habitats Error: " . $e->getMessage());
-      return [];  // Return an empty array in case of error
+      echo "Erreur lors de la récupération des habitats : " . $e->getMessage(); // Afficher le message d'erreur
+      return [];  // Retourner un tableau vide en cas d'erreur
     }
   }
+
 
   // CREATE - Ajouter un habitat
   public function create($nom, $description, $commentaire_habitat)
